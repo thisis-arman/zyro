@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zyro | Move Faster. Live Smarter.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        .bg-electric-blue { background-color: #0070f3; }
+        .text-electric-blue { color: #0070f3; }
+    </style>
+</head>
+<body class="bg-white text-black antialiased">
+
+    <nav class="fixed top-0 w-full z-50 glass border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-extrabold tracking-tighter">ZYRO</div>
+            <div class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-widest">
+                <a href="#collection" class="hover:text-electric-blue transition">Collection</a>
+                <a href="#benefits" class="hover:text-electric-blue transition">Performance</a>
+                <a href="#reviews" class="hover:text-electric-blue transition">Reviews</a>
+            </div>
+            <button class="bg-black text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-gray-800 transition">Shop Now</button>
+        </div>
+    </nav>
+
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="z-10 text-center lg:text-left">
+                <div class="inline-block bg-gray-100 px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-6">New Drop: Pulse 2.0</div>
+                <h1 class="text-6xl lg:text-8xl font-extrabold leading-tight tracking-tighter mb-6">
+                    Move Faster. <br><span class="text-gray-400">Live Smarter.</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
+                    Premium footwear engineered for everyday performance. Starting at <span class="text-black font-bold">$79</span>.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <button class="bg-electric-blue text-white px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-all shadow-xl shadow-blue-200">Shop Zyro</button>
+                    <button class="bg-white border-2 border-black px-10 py-5 rounded-xl font-bold text-lg hover:bg-gray-50 transition">Explore Collection</button>
+                </div>
+                <div class="mt-6 flex items-center justify-center lg:justify-start gap-4 text-xs text-gray-500 uppercase font-semibold">
+                    <span>Free Worldwide Shipping</span>
+                    <span class="h-1 w-1 bg-gray-400 rounded-full"></span>
+                    <span>30-Day Guarantee</span>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="absolute -top-20 -right-20 w-96 h-96 bg-blue-50 rounded-full filter blur-3xl opacity-50"></div>
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=1000" alt="Zyro Shoe" class="relative z-10 w-full rotate-[-12deg] hover:rotate-0 transition-transform duration-700 drop-shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <div class="bg-gray-50 py-10 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center gap-8 opacity-60 grayscale">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-xl">⭐⭐⭐⭐⭐</span>
+                <span class="text-sm font-bold text-black">4.8/5 (100k+ users)</span>
+            </div>
+            <p class="text-sm font-bold tracking-widest uppercase">Worn in 30+ Countries</p>
+            <div class="flex gap-8 items-center font-black text-2xl italic">
+                <span>VOGUE</span>
+                <span>HYPEBEAST</span>
+                <span>WIRED</span>
+            </div>
+        </div>
+    </div>
+
+    <section id="benefits" class="py-24 max-w-7xl mx-auto px-6">
+        <div class="grid md:grid-cols-4 gap-8">
+            <div class="p-8 rounded-3xl bg-white border border-gray-100 hover:shadow-xl transition group">
+                <i data-lucide="zap" class="w-10 h-10 text-electric-blue mb-6"></i>
+                <h3 class="font-bold text-xl mb-2">Ultra-Light Sole</h3>
+                <p class="text-gray-500 text-sm">Engineered for gravity-defying movement all day long.</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white border border-gray-100 hover:shadow-xl transition">
+                <i data-lucide="wind" class="w-10 h-10 text-electric-blue mb-6"></i>
+                <h3 class="font-bold text-xl mb-2">Breathable Knit</h3>
+                <p class="text-gray-500 text-sm">Adaptive mesh keeps your feet cool in any climate.</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white border border-gray-100 hover:shadow-xl transition">
+                <i data-lucide="cloud" class="w-10 h-10 text-electric-blue mb-6"></i>
+                <h3 class="font-bold text-xl mb-2">Cloud Comfort</h3>
+                <p class="text-gray-500 text-sm">Custom foam cushioning that learns your footprint.</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white border border-gray-100 hover:shadow-xl transition">
+                <i data-lucide="shield-check" class="w-10 h-10 text-electric-blue mb-6"></i>
+                <h3 class="font-bold text-xl mb-2">High Grip</h3>
+                <p class="text-gray-500 text-sm">Maximum stability on urban terrain and wet surfaces.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="collection" class="py-20 bg-black text-white rounded-[3rem] mx-4">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&q=80&w=800" alt="Zyro Phantom" class="rounded-3xl shadow-2xl">
+            </div>
+            <div>
+                <h2 class="text-5xl font-extrabold mb-4">Zyro Phantom</h2>
+                <p class="text-2xl font-light text-gray-400 mb-6">$129.00</p>
+                
+                <div class="mb-8">
+                    <p class="text-sm uppercase tracking-widest mb-3 font-bold">Select Color</p>
+                    <div class="flex gap-3">
+                        <div class="w-8 h-8 rounded-full bg-white border-2 border-electric-blue cursor-pointer"></div>
+                        <div class="w-8 h-8 rounded-full bg-gray-700 cursor-pointer"></div>
+                        <div class="w-8 h-8 rounded-full bg-blue-900 cursor-pointer"></div>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <p class="text-sm uppercase tracking-widest mb-3 font-bold">Select Size</p>
+                    <div class="grid grid-cols-4 gap-2">
+                        <button class="py-3 border border-gray-700 rounded-lg hover:bg-white hover:text-black transition">8</button>
+                        <button class="py-3 border border-gray-700 rounded-lg hover:bg-white hover:text-black transition">9</button>
+                        <button class="py-3 border border-white bg-white text-black rounded-lg">10</button>
+                        <button class="py-3 border border-gray-700 rounded-lg hover:bg-white hover:text-black transition">11</button>
+                    </div>
+                </div>
+
+                <p class="text-orange-500 font-bold mb-6 flex items-center gap-2">
+                    <i data-lucide="trending-up" class="w-4 h-4"></i> Only 12 left in your size
+                </p>
+
+                <button class="w-full bg-electric-blue py-6 rounded-2xl font-bold text-xl hover:scale-[1.02] transition-transform">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 text-center">
+        <h3 class="text-sm font-bold uppercase tracking-[0.3em] mb-4">Limited Holiday Offer Ends In</h3>
+        <div class="flex justify-center gap-6 text-4xl font-extrabold" id="timer">
+            <div>04 <span class="block text-xs font-normal text-gray-400">HRS</span></div>
+            <div>52 <span class="block text-xs font-normal text-gray-400">MIN</span></div>
+            <div>18 <span class="block text-xs font-normal text-gray-400">SEC</span></div>
+        </div>
+    </section>
+
+    <div class="md:hidden fixed bottom-0 w-full glass p-4 z-[100] border-t border-gray-200">
+        <button class="w-full bg-black text-white py-4 rounded-xl font-bold shadow-lg">Buy Zyro - $79</button>
+    </div>
+
+    <footer class="bg-gray-50 pt-20 pb-32 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+            <div>
+                <div class="text-2xl font-extrabold tracking-tighter mb-6">ZYRO</div>
+                <p class="text-gray-500 text-sm">Redefining modern movement through urban performance footwear.</p>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 uppercase text-xs tracking-widest">Shop</h4>
+                <ul class="text-gray-500 space-y-2 text-sm">
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 uppercase text-xs tracking-widest">Support</h4>
+                <ul class="text-gray-500 space-y-2 text-sm">
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-4 uppercase text-xs tracking-widest">Stay Updated</h4>
+                <div class="flex gap-2">
+                    <input type="email" placeholder="Email" class="bg-white border border-gray-200 px-4 py-2 rounded-lg w-full outline-none focus:border-electric-blue">
+                    <button class="bg-black text-white px-4 py-2 rounded-lg font-bold">Join</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Simple Countdown Logic
+        const timerContainer = document.getElementById('timer');
+        let h = 4, m = 52, s = 18;
+        setInterval(() => {
+            s--;
+            if(s < 0) { s = 59; m--; }
+            if(m < 0) { m = 59; h--; }
+            timerContainer.innerHTML = `
+                <div>${h.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">HRS</span></div>
+                <div>${m.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">MIN</span></div>
+                <div>${s.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">SEC</span></div>
+            `;
+        }, 1000);
+    </script>
+</body>
+</html>
