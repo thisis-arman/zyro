@@ -32,11 +32,11 @@
         <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
             <div class="z-10 text-center lg:text-left">
                 <div class="inline-block bg-gray-100 px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-6">New Drop: Pulse 2.0</div>
-                <h1 class="text-6xl lg:text-8xl font-extrabold leading-tight tracking-tighter mb-6">
+                <h1 class="text-4xl lg:text-8xl font-extrabold leading-tight tracking-tighter mb-6">
                     Move Faster. <br><span class="text-gray-400">Live Smarter.</span>
                 </h1>
                 <p class="text-xl text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
-                    Premium footwear engineered for everyday performance. Starting at <span class="text-black font-bold">$79</span>.
+                    Premium footwear engineered for everyday performance. Starting at <span class="text-black font-bold">৳1299</span>.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                     <button class="bg-electric-blue text-white px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-all shadow-xl shadow-blue-200">Shop Qadam</button>
@@ -102,7 +102,7 @@
             </div>
             <div>
                 <h2 class="text-5xl font-extrabold mb-4">Qadam Phantom</h2>
-                <p class="text-2xl font-light text-gray-400 mb-6">$129.00</p>
+                <p class="text-2xl font-light text-gray-400 mb-6">৳1129.00</p>
                 
                 <div class="mb-8">
                     <p class="text-sm uppercase tracking-widest mb-3 font-bold">Select Color</p>
@@ -142,7 +142,7 @@
     </section>
 
     <div class="md:hidden fixed bottom-0 w-full glass p-4 z-[100] border-t border-gray-200">
-        <button class="w-full bg-black text-white py-4 rounded-xl font-bold shadow-lg">Buy Qadam - $79</button>
+        <button class="w-full bg-black text-white py-4 rounded-xl font-bold shadow-lg">Buy Qadam - ৳79</button>
     </div>
 
     <footer class="bg-gray-50 pt-20 pb-32 border-t border-gray-100">
@@ -189,9 +189,9 @@
             if(s < 0) { s = 59; m--; }
             if(m < 0) { m = 59; h--; }
             timerContainer.innerHTML = `
-                <div>${h.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">HRS</span></div>
-                <div>${m.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">MIN</span></div>
-                <div>${s.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">SEC</span></div>
+                <div>৳{h.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">HRS</span></div>
+                <div>৳{m.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">MIN</span></div>
+                <div>৳{s.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">SEC</span></div>
             `;
         }, 1000);
     </script>
