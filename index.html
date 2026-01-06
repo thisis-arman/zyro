@@ -102,7 +102,7 @@
             </div>
             <div>
                 <h2 class="text-5xl font-extrabold mb-4">Qadam Phantom</h2>
-                <p class="text-2xl font-light text-gray-400 mb-6">৳1129.00</p>
+                <p class="text-2xl font-light text-gray-400 mb-6">৳ 1129.00</p>
                 
                 <div class="mb-8">
                     <p class="text-sm uppercase tracking-widest mb-3 font-bold">Select Color</p>
@@ -142,7 +142,7 @@
     </section>
 
     <div class="md:hidden fixed bottom-0 w-full glass p-4 z-[100] border-t border-gray-200">
-        <button class="w-full bg-black text-white py-4 rounded-xl font-bold shadow-lg">Buy Qadam - ৳79</button>
+        <button class="w-full bg-black text-white py-4 rounded-xl font-bold shadow-lg">Buy Qadam - ৳1299</button>
     </div>
 
     <footer class="bg-gray-50 pt-20 pb-32 border-t border-gray-100">
@@ -189,9 +189,9 @@
             if(s < 0) { s = 59; m--; }
             if(m < 0) { m = 59; h--; }
             timerContainer.innerHTML = `
-                <div>৳{h.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">HRS</span></div>
-                <div>৳{m.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">MIN</span></div>
-                <div>৳{s.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">SEC</span></div>
+                <div>${h.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">HRS</span></div>
+                <div>${m.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">MIN</span></div>
+                <div>${s.toString().padStart(2, '0')} <span class="block text-xs font-normal text-gray-400 uppercase">SEC</span></div>
             `;
         }, 1000);
     </script>
