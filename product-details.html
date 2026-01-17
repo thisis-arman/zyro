@@ -1,0 +1,41 @@
+<body class="bg-white">
+    <main class="pt-40 pb-24 max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-20">
+            <div class="space-y-6">
+                <div class="bg-gray-50 rounded-[3rem] overflow-hidden aspect-square">
+                    <img id="main-product-img" src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1000" class="w-full h-full object-cover transition duration-500">
+                </div>
+                <div class="grid grid-cols-4 gap-4">
+                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=400" class="rounded-2xl cursor-pointer hover:ring-2 ring-brand thumb-img" onclick="updateMainImg(this.src)">
+                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=400" class="rounded-2xl cursor-pointer hover:ring-2 ring-brand thumb-img" onclick="updateMainImg(this.src)">
+                </div>
+            </div>
+
+            <div>
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="bg-gray-100 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest text-gray-500">In Stock</span>
+                </div>
+                <h1 class="text-5xl font-black uppercase italic mb-2">Classic Red Legacy</h1>
+                <p class="text-3xl font-black text-brand italic mb-8">৳ 2,499</p>
+
+                <div class="border-y border-gray-100 py-8 mb-8 space-y-6">
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-widest mb-4">Select Size</h4>
+                        <div class="flex gap-3">
+                            <button class="w-12 h-12 border-2 border-gray-100 rounded-xl font-bold hover:border-brand transition">40</button>
+                            <button class="w-12 h-12 border-2 border-brand rounded-xl font-bold text-brand">41</button>
+                            <button class="w-12 h-12 border-2 border-gray-100 rounded-xl font-bold hover:border-brand transition">42</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <a href="https://wa.me/8801763266628?text=I'm%20interested%20in%20Classic%20Red%20Legacy%20Size%2041" target="_blank" class="block w-full bg-green-600 text-white text-center py-5 rounded-2xl font-bold text-lg hover:shadow-xl transition-all">Order on WhatsApp</a>
+                    <a href="https://www.facebook.com/buzzwalk" target="_blank" class="block w-full border-2 border-gray-900 text-center py-5 rounded-2xl font-bold text-lg hover:bg-gray-900 hover:text-white transition">Ask on Facebook</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
