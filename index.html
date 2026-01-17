@@ -2,274 +2,252 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <title>buzzWalk | Comfort, Quality legacy</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        /* Fallback to Inter if Futura Display is not installed locally */
-        body { font-family: 'Futura Display', 'Inter', sans-serif; }
-        .glass { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
         .bg-brand { background-color: #b10000; }
         .text-brand { color: #b10000; }
         .border-brand { border-color: #b10000; }
+        .font-display { font-weight: 900; text-transform: uppercase; font-style: italic; letter-spacing: -0.02em; }
     </style>
 </head>
 <body class="bg-white text-black antialiased">
 
     <nav class="fixed top-0 w-full z-50 glass border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-2xl font-black tracking-tighter uppercase italic">buzz<span class="text-brand">Walk</span></div>
+        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
+            <div class="text-xl md:text-2xl font-display tracking-tighter">buzz<span class="text-brand">Walk</span></div>
             <div class="hidden md:flex space-x-8 font-bold text-xs uppercase tracking-widest">
                 <a href="#hero" class="hover:text-brand transition">Home</a>
-                <a href="#benefits" class="hover:text-brand transition">Quality</a>
+                <a href="#heritage" class="hover:text-brand transition">Heritage</a>
                 <a href="#collection" class="hover:text-brand transition">Collection</a>
-                <a href="https://www.facebook.com/buzzwalk" target="_blank" class="hover:text-brand transition">Facebook</a>
+                <a href="#reviews" class="hover:text-brand transition">Reviews</a>
             </div>
-            <a href="https://wa.me/8801763266628" class="bg-brand text-white px-6 py-2 rounded-full text-xs font-bold uppercase hover:opacity-90 transition">Order via WhatsApp</a>
+            <a href="https://wa.me/8801763266628" class="bg-brand text-white px-4 md:px-6 py-2 rounded-full text-[10px] md:text-xs font-bold uppercase hover:opacity-90 transition">WhatsApp Order</a>
         </div>
     </nav>
 
-    <section id="hero" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
+    <section id="hero" class="relative pt-24 pb-12 md:pt-48 md:pb-32 bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-10 items-center">
             <div class="z-10 text-center lg:text-left">
-                <div class="inline-block bg-white border border-brand/20 px-4 py-1 rounded-full text-[10px] font-bold tracking-[0.3em] uppercase mb-6 text-brand">Premium Craftsmanship</div>
-                <h1 class="text-5xl lg:text-8xl font-black leading-[0.9] tracking-tighter mb-6 uppercase italic">
-                    Comfort, <br><span class="text-gray-300">Quality legacy.</span>
-                </h1>
-                <p class="text-lg text-gray-500 mb-8 max-w-lg mx-auto lg:mx-0">
-                    Redefining modern movement through urban performance footwear. Hand-crafted for the long walk.
-                </p>
+                <div class="inline-block bg-white border border-brand/20 px-4 py-1 rounded-full text-[10px] font-bold tracking-[0.3em] uppercase mb-4 text-brand">Premium Craftsmanship</div>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-display leading-[0.9] mb-6">Comfort, <br><span class="text-gray-300">Quality legacy.</span></h1>
+                <p class="text-base md:text-lg text-gray-500 mb-8 max-w-lg mx-auto lg:mx-0 italic">Handcrafted footwear engineered for those who demand purpose and style.</p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <a href="#collection" class="bg-brand text-white px-10 py-5 rounded-xl font-bold text-lg hover:scale-105 transition-all shadow-xl shadow-red-200 text-center">Shop Collection</a>
-                    <a href="https://wa.me/8801763266628" class="bg-white border-2 border-black px-10 py-5 rounded-xl font-bold text-lg hover:bg-gray-50 transition text-center">Contact Us</a>
+                    <a href="#collection" class="bg-brand text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-red-200 text-center">Explore Collection</a>
+                    <a href="#heritage" class="bg-white border-2 border-black px-8 py-4 rounded-xl font-bold text-lg text-center hover:bg-black hover:text-white transition-all">Our Story</a>
                 </div>
             </div>
-            <div class="relative">
-                <div class="absolute -top-20 -right-20 w-96 h-96 bg-red-50 rounded-full filter blur-3xl opacity-50"></div>
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=1000" alt="buzzWalk Shoe" class="relative z-10 w-full rotate-[-12deg] hover:rotate-0 transition-transform duration-700 drop-shadow-2xl">
+            <div class="relative mt-12 lg:mt-0">
+                <div class="absolute -top-10 -right-10 w-64 h-64 bg-red-100 rounded-full filter blur-3xl opacity-50"></div>
+                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=1000" alt="buzzWalk Hero" class="relative z-10 w-full max-w-[500px] mx-auto rotate-[-5deg] md:rotate-[-12deg] drop-shadow-2xl">
             </div>
         </div>
     </section>
 
-    <div class="bg-white py-12 border-y border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 flex flex-wrap justify-between items-center gap-8 opacity-40 grayscale">
-            <p class="text-sm font-bold tracking-[0.2em] uppercase">Trust the Legacy</p>
-            <div class="flex gap-12 items-center font-black text-2xl italic">
-                <span>VOGUE</span>
-                <span>HYPEBEAST</span>
-                <span>WIRED</span>
-                <span>GQ</span>
-            </div>
-        </div>
-    </div>
-
-    <section id="benefits" class="py-24 max-w-7xl mx-auto px-6">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-black uppercase italic">The buzzWalk Standard</h2>
-        </div>
-        <div class="grid md:grid-cols-4 gap-8">
-            <div class="p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-brand/10">
-                <i data-lucide="award" class="w-10 h-10 text-brand mb-6"></i>
-                <h3 class="font-bold text-xl mb-2 uppercase italic">Quality First</h3>
-                <p class="text-gray-500 text-sm">Every stitch is inspected to meet our heritage standards.</p>
-            </div>
-            <div class="p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-brand/10">
-                <i data-lucide="feather" class="w-10 h-10 text-brand mb-6"></i>
-                <h3 class="font-bold text-xl mb-2 uppercase italic">Lightweight</h3>
-                <p class="text-gray-500 text-sm">Engineered for gravity-defying movement all day long.</p>
-            </div>
-            <div class="p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-brand/10">
-                <i data-lucide="heart" class="w-10 h-10 text-brand mb-6"></i>
-                <h3 class="font-bold text-xl mb-2 uppercase italic">Cloud Tech</h3>
-                <p class="text-gray-500 text-sm">Custom foam cushioning that learns your footprint.</p>
-            </div>
-            <div class="p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-brand/10">
-                <i data-lucide="shield-check" class="w-10 h-10 text-brand mb-6"></i>
-                <h3 class="font-bold text-xl mb-2 uppercase italic">High Grip</h3>
-                <p class="text-gray-500 text-sm">Maximum stability on urban terrain and wet surfaces.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="collection" class="py-20 bg-black text-white rounded-[3rem] mx-4">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&q=80&w=800" alt="buzzWalk Phantom" class="rounded-3xl shadow-2xl">
-            </div>
-            <div>
-                <div class="text-brand font-bold uppercase tracking-widest text-xs mb-4">Signature Series</div>
-                <h2 class="text-5xl font-black italic uppercase mb-4">buzzWalk Phantom</h2>
-                <p class="text-2xl font-light text-gray-400 mb-6">৳ 2,499.00</p>
-                
-                <div class="mb-8">
-                    <p class="text-xs uppercase tracking-widest mb-3 font-bold text-gray-500">Select Color</p>
-                    <div class="flex gap-3">
-                        <div class="w-8 h-8 rounded-full bg-brand border-2 border-white cursor-pointer"></div>
-                        <div class="w-8 h-8 rounded-full bg-gray-700 cursor-pointer"></div>
-                        <div class="w-8 h-8 rounded-full bg-white cursor-pointer"></div>
+    <section id="heritage" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="grid grid-cols-2 gap-4">
+                    <img src="https://images.unsplash.com/photo-1596733430284-f7437764b1a9?q=80&w=600" class="rounded-2xl mt-8" alt="Leather Craft">
+                    <img src="https://images.unsplash.com/photo-1449241595218-848028733d5a?q=80&w=600" class="rounded-2xl" alt="Design Process">
+                </div>
+                <div>
+                    <h4 class="text-brand font-bold uppercase tracking-[0.3em] text-xs mb-4">The Craftsmanship</h4>
+                    <h2 class="text-4xl md:text-5xl font-display mb-6">Born from <span class="text-gray-400 text-3xl">Necessity,</span> <br>Refined by <span class="text-brand">Legacy.</span></h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">At buzzWalk, we believe a shoe isn't just about walking; it's about the legacy you leave with every stride. Each pair is handcrafted in small batches using premium leather and high-performance composites, ensuring your comfort never has to compromise with style.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-brand/10 p-2 rounded-lg text-brand"><i data-lucide="check-circle" class="w-5 h-5"></i></div>
+                            <div><p class="font-bold uppercase text-sm italic">Double-Stitched Durability</p></div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="bg-brand/10 p-2 rounded-lg text-brand"><i data-lucide="check-circle" class="w-5 h-5"></i></div>
+                            <div><p class="font-bold uppercase text-sm italic">Eco-Conscious Packaging</p></div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="mb-8">
-                    <p class="text-xs uppercase tracking-widest mb-3 font-bold text-gray-500">Select Size</p>
-                    <div class="grid grid-cols-4 gap-2">
-                        <button class="py-3 border border-gray-700 rounded-lg hover:bg-brand transition">40</button>
-                        <button class="py-3 border border-gray-700 rounded-lg hover:bg-brand transition">41</button>
-                        <button class="py-3 border border-white bg-white text-black rounded-lg">42</button>
-                        <button class="py-3 border border-gray-700 rounded-lg hover:bg-brand transition">43</button>
-                    </div>
-                </div>
-
-                <a href="https://wa.me/8801763266628?text=Interested%20in%20Phantom%20Signature" class="block w-full bg-brand py-6 rounded-2xl font-bold text-xl hover:scale-[1.02] transition-transform text-center shadow-lg shadow-red-900/20">Buy via WhatsApp</a>
             </div>
         </div>
     </section>
 
-    <section class="py-24 max-w-7xl mx-auto px-6">
-        <div class="mb-16">
-            <h2 class="text-4xl font-black uppercase italic">The Collection</h2>
-            <p class="text-gray-400 uppercase tracking-widest text-xs">Explore our latest drops</p>
+    <section id="benefits" class="py-16 md:py-24 bg-gray-50 border-y border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center md:text-left">
+                <i data-lucide="shield-check" class="w-10 h-10 text-brand mb-4 mx-auto md:mx-0"></i>
+                <h3 class="font-bold text-lg uppercase italic mb-2">Built to Last</h3>
+                <p class="text-gray-500 text-sm italic">Premium materials designed to endure any urban environment.</p>
+            </div>
+            <div class="text-center md:text-left">
+                <i data-lucide="wind" class="w-10 h-10 text-brand mb-4 mx-auto md:mx-0"></i>
+                <h3 class="font-bold text-lg uppercase italic mb-2">Advanced Airflow</h3>
+                <p class="text-gray-500 text-sm italic">Breathable knit technology keeps your feet cool under pressure.</p>
+            </div>
+            <div class="text-center md:text-left">
+                <i data-lucide="truck" class="w-10 h-10 text-brand mb-4 mx-auto md:mx-0"></i>
+                <h3 class="font-bold text-lg uppercase italic mb-2">Express Delivery</h3>
+                <p class="text-gray-500 text-sm italic">2-3 day doorstep delivery across all major cities in Bangladesh.</p>
+            </div>
+            <div class="text-center md:text-left">
+                <i data-lucide="rotate-ccw" class="w-10 h-10 text-brand mb-4 mx-auto md:mx-0"></i>
+                <h3 class="font-bold text-lg uppercase italic mb-2">Easy Returns</h3>
+                <p class="text-gray-500 text-sm italic">Not the right fit? Exchange with ease within 7 days.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 max-w-7xl mx-auto px-6">
+        <div class="bg-black text-white rounded-[2rem] md:rounded-[4rem] p-8 md:p-20 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="order-2 lg:order-1">
+                <h2 class="text-5xl md:text-6xl font-display mb-6 leading-tight uppercase italic">The Phantom <br><span class="text-brand">Black-Red</span></h2>
+                <p class="text-gray-400 text-lg mb-8 italic">Our best-selling drop. Engineered for 24-hour comfort with a soul of a racer.</p>
+                <div class="flex items-center gap-6 mb-10">
+                    <div>
+                        <p class="text-4xl font-display tracking-tighter italic">৳ 2,499</p>
+                        <p class="text-[10px] uppercase text-gray-500 tracking-widest">Limited Holiday Price</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/8801763266628?text=I%20want%20to%20buy%20The%20Phantom" class="block w-full bg-brand py-5 rounded-2xl font-bold text-center text-xl shadow-xl shadow-red-900/40 hover:scale-105 transition-all">Order On WhatsApp</a>
+            </div>
+            <div class="order-1 lg:order-2">
+                <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&q=80&w=800" class="rounded-3xl hover:scale-105 transition duration-700">
+            </div>
+        </div>
+    </section>
+
+    <section id="collection" class="py-16 md:py-24 max-w-7xl mx-auto px-6">
+        <div class="flex justify-between items-end mb-12">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-display italic">The 2026 Drops</h2>
+                <p class="text-gray-400 text-xs uppercase tracking-widest mt-2 font-bold italic">Curated for the urban explorer</p>
+            </div>
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div class="group">
-                <div class="aspect-[4/5] bg-gray-100 rounded-3xl overflow-hidden mb-6 relative">
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/5] bg-gray-50 rounded-[2.5rem] overflow-hidden mb-6 relative border border-gray-100">
                     <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <a href="https://wa.me/8801763266628" class="absolute bottom-4 right-4 bg-white p-4 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">
-                        <i data-lucide="shopping-cart" class="w-6 h-6 text-brand"></i>
-                    </a>
+                    <div class="absolute top-6 left-6 bg-white text-[10px] font-bold px-3 py-1 rounded-full uppercase italic">New Drop</div>
                 </div>
-                <h3 class="font-bold text-xl uppercase italic">buzzWalk Aero</h3>
-                <p class="text-brand font-bold italic text-sm">৳ 1,850</p>
+                <div class="flex justify-between items-center px-4">
+                    <h3 class="font-display text-lg italic tracking-tight">buzzWalk Aero</h3>
+                    <p class="font-black text-brand italic">৳1,850</p>
+                </div>
             </div>
-            <div class="group">
-                <div class="aspect-[4/5] bg-gray-100 rounded-3xl overflow-hidden mb-6 relative">
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/5] bg-gray-50 rounded-[2.5rem] overflow-hidden mb-6 relative border border-gray-100">
                     <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <a href="https://wa.me/8801763266628" class="absolute bottom-4 right-4 bg-white p-4 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">
-                        <i data-lucide="shopping-cart" class="w-6 h-6 text-brand"></i>
-                    </a>
                 </div>
-                <h3 class="font-bold text-xl uppercase italic">buzzWalk Classic</h3>
-                <p class="text-brand font-bold italic text-sm">৳ 2,100</p>
+                <div class="flex justify-between items-center px-4">
+                    <h3 class="font-display text-lg italic tracking-tight">buzzWalk Classic</h3>
+                    <p class="font-black text-brand italic">৳2,100</p>
+                </div>
             </div>
-            <div class="group">
-                <div class="aspect-[4/5] bg-gray-100 rounded-3xl overflow-hidden mb-6 relative">
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/5] bg-gray-50 rounded-[2.5rem] overflow-hidden mb-6 relative border border-gray-100">
                     <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <a href="https://wa.me/8801763266628" class="absolute bottom-4 right-4 bg-white p-4 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">
-                        <i data-lucide="shopping-cart" class="w-6 h-6 text-brand"></i>
-                    </a>
+                    <div class="absolute top-6 left-6 bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase italic">Limited</div>
                 </div>
-                <h3 class="font-bold text-xl uppercase italic">buzzWalk Urban</h3>
-                <p class="text-brand font-bold italic text-sm">৳ 2,350</p>
+                <div class="flex justify-between items-center px-4">
+                    <h3 class="font-display text-lg italic tracking-tight">buzzWalk Urban</h3>
+                    <p class="font-black text-brand italic">৳2,350</p>
+                </div>
             </div>
-            <div class="group">
-                <div class="aspect-[4/5] bg-gray-100 rounded-3xl overflow-hidden mb-6 relative">
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/5] bg-gray-50 rounded-[2.5rem] overflow-hidden mb-6 relative border border-gray-100">
                     <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <a href="https://wa.me/8801763266628" class="absolute bottom-4 right-4 bg-white p-4 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">
-                        <i data-lucide="shopping-cart" class="w-6 h-6 text-brand"></i>
-                    </a>
                 </div>
-                <h3 class="font-bold text-xl uppercase italic">buzzWalk Volt</h3>
-                <p class="text-brand font-bold italic text-sm">৳ 1,999</p>
+                <div class="flex justify-between items-center px-4">
+                    <h3 class="font-display text-lg italic tracking-tight">buzzWalk Volt</h3>
+                    <p class="font-black text-brand italic">৳1,999</p>
+                </div>
             </div>
-            <div class="group">
-                <div class="aspect-[4/5] bg-gray-100 rounded-3xl overflow-hidden mb-6 relative">
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/5] bg-gray-50 rounded-[2.5rem] overflow-hidden mb-6 relative border border-gray-100">
                     <img src="https://images.unsplash.com/photo-1512374382149-4332c6c02151?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <a href="https://wa.me/8801763266628" class="absolute bottom-4 right-4 bg-white p-4 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">
-                        <i data-lucide="shopping-cart" class="w-6 h-6 text-brand"></i>
-                    </a>
                 </div>
-                <h3 class="font-bold text-xl uppercase italic">buzzWalk Zenith</h3>
-                <p class="text-brand font-bold italic text-sm">৳ 2,800</p>
+                <div class="flex justify-between items-center px-4">
+                    <h3 class="font-display text-lg italic tracking-tight">buzzWalk Zenith</h3>
+                    <p class="font-black text-brand italic">৳2,800</p>
+                </div>
             </div>
-            <div class="group">
-                <div class="aspect-[4/5] bg-gray-100 rounded-3xl overflow-hidden mb-6 relative">
+            <div class="group cursor-pointer">
+                <div class="aspect-[4/5] bg-gray-50 rounded-[2.5rem] overflow-hidden mb-6 relative border border-gray-100">
                     <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <a href="https://wa.me/8801763266628" class="absolute bottom-4 right-4 bg-white p-4 rounded-full shadow-xl opacity-0 group-hover:opacity-100 transition-all translate-y-4 group-hover:translate-y-0">
-                        <i data-lucide="shopping-cart" class="w-6 h-6 text-brand"></i>
-                    </a>
                 </div>
-                <h3 class="font-bold text-xl uppercase italic">buzzWalk Pulse</h3>
-                <p class="text-brand font-bold italic text-sm">৳ 1,750</p>
+                <div class="flex justify-between items-center px-4">
+                    <h3 class="font-display text-lg italic tracking-tight">buzzWalk Pulse</h3>
+                    <p class="font-black text-brand italic">৳1,750</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="py-16 text-center bg-gray-50 border-y">
-        <h3 class="text-xs font-bold uppercase tracking-[0.4em] mb-6 text-gray-400">Exclusive Drop Ends In</h3>
-        <div class="flex justify-center gap-8 text-5xl font-black italic" id="timer">
-            <div>04 <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">HRS</span></div>
-            <div class="text-brand">:</div>
-            <div>52 <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">MIN</span></div>
-            <div class="text-brand">:</div>
-            <div>18 <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">SEC</span></div>
+    <section id="reviews" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-display mb-16 italic underline decoration-brand decoration-4 underline-offset-8">Community Reviews</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 text-left">
+                    <div class="text-yellow-400 mb-4 flex gap-1"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-gray-600 mb-6 italic">"The build quality is insane for this price. I've been wearing the Classic for 3 months now in Dhaka traffic, and they still look new."</p>
+                    <div class="font-bold text-sm uppercase">— Adnan Ahmed, Dhaka</div>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 text-left">
+                    <div class="text-yellow-400 mb-4 flex gap-1"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-gray-600 mb-6 italic">"Comfort is top-tier. I usually get heel pain, but the foam tech in buzzWalk is a lifesaver for my daily walk to work."</p>
+                    <div class="font-bold text-sm uppercase">— Sarah Islam, Chattogram</div>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 text-left">
+                    <div class="text-yellow-400 mb-4 flex gap-1"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
+                    <p class="text-gray-600 mb-6 italic">"Delivery was super fast. Got them in 48 hours. The packaging was so premium, felt like an unboxing experience."</p>
+                    <div class="font-bold text-sm uppercase">— Fahim S., Sylhet</div>
+                </div>
+            </div>
         </div>
     </section>
-
-    <div class="md:hidden fixed bottom-0 w-full glass p-4 z-[100] border-t border-gray-100">
-        <a href="https://wa.me/8801763266628" class="block w-full bg-brand text-white py-4 rounded-xl font-bold text-center shadow-lg">Buy Now - ৳1299</a>
-    </div>
 
     <footer class="bg-white pt-20 pb-32 border-t border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
-            <div>
-                <div class="text-2xl font-black tracking-tighter mb-6 uppercase italic">buzz<span class="text-brand">Walk</span></div>
-                <p class="text-gray-400 text-sm italic">"Comfort, Quality legacy."</p>
-                <div class="flex gap-4 mt-6">
-                    <a href="https://www.facebook.com/buzzwalk" class="text-gray-400 hover:text-brand"><i data-lucide="facebook"></i></a>
-                    <a href="https://wa.me/8801763266628" class="text-gray-400 hover:text-brand"><i data-lucide="message-circle"></i></a>
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="text-center md:text-left">
+                <div class="text-2xl font-display mb-4">buzz<span class="text-brand">Walk</span></div>
+                <p class="text-gray-400 text-sm italic">Comfort, Quality legacy. <br>Crafted for the purposed stride.</p>
+            </div>
+            <div class="text-center md:text-left">
+                <h4 class="font-bold text-[10px] uppercase tracking-widest text-gray-400 mb-6">Quick Links</h4>
+                <div class="flex flex-col gap-2 text-sm font-bold uppercase italic">
+                    <a href="#hero" class="hover:text-brand">Home</a>
+                    <a href="#collection" class="hover:text-brand">Shop Collection</a>
+                    <a href="#reviews" class="hover:text-brand">Walkers Voice</a>
                 </div>
             </div>
-            <div>
-                <h4 class="font-bold mb-4 uppercase text-[10px] tracking-widest text-gray-400">Shop</h4>
-                <ul class="text-gray-600 space-y-2 text-sm font-bold">
-                    <li><a href="#" class="hover:text-brand">New Arrivals</a></li>
-                    <li><a href="#" class="hover:text-brand">Best Sellers</a></li>
-                    <li><a href="#" class="hover:text-brand">Sale</a></li>
-                </ul>
+            <div class="text-center md:text-left">
+                <h4 class="font-bold text-[10px] uppercase tracking-widest text-gray-400 mb-6">Support</h4>
+                <div class="flex flex-col gap-2 text-sm font-bold uppercase italic text-gray-500">
+                    <a href="https://wa.me/8801763266628">WhatsApp: +880 1763-266628</a>
+                    <p>Dhaka, Bangladesh</p>
+                    <a href="https://www.facebook.com/buzzwalk" class="text-blue-600">Facebook Page</a>
+                </div>
             </div>
-            <div>
-                <h4 class="font-bold mb-4 uppercase text-[10px] tracking-widest text-gray-400">Support</h4>
-                <ul class="text-gray-600 space-y-2 text-sm font-bold">
-                    <li><a href="#" class="hover:text-brand">Shipping Policy</a></li>
-                    <li><a href="#" class="hover:text-brand">Size Guide</a></li>
-                    <li><a href="https://wa.me/8801763266628" class="hover:text-brand">Contact Support</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold mb-4 uppercase text-[10px] tracking-widest text-gray-400">Follow the Legacy</h4>
-                <p class="text-xs text-gray-400 mb-4 italic">Join 10,000+ walkers in Dhaka.</p>
+            <div class="text-center md:text-left">
+                <h4 class="font-bold text-[10px] uppercase tracking-widest text-gray-400 mb-6">Join the Legacy</h4>
                 <div class="flex gap-2">
-                    <input type="email" placeholder="Email" class="bg-gray-50 border border-gray-100 px-4 py-2 rounded-lg w-full outline-none focus:border-brand text-sm">
-                    <button class="bg-black text-white px-4 py-2 rounded-lg font-bold text-xs uppercase">Join</button>
+                    <input type="email" placeholder="Email Address" class="bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl w-full text-xs">
+                    <button class="bg-black text-white px-6 py-3 rounded-xl font-bold text-xs uppercase italic">Join</button>
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-gray-50 text-[10px] text-gray-300 uppercase tracking-widest text-center">
-            © 2026 buzzWalk Legacy Footwear. All Rights Reserved.
-        </div>
+        <div class="mt-20 text-center text-[10px] text-gray-300 uppercase tracking-widest">© 2026 buzzWalk Legacy. All Rights Reserved.</div>
     </footer>
 
-    <script>
-        // Initialize Icons
-        lucide.createIcons();
+    <div class="md:hidden fixed bottom-0 w-full glass p-4 z-[100] border-t border-gray-100 flex gap-4">
+        <a href="https://wa.me/8801763266628" class="flex-1 bg-brand text-white py-4 rounded-2xl font-bold text-center shadow-lg active:scale-95 transition-transform">WhatsApp Now</a>
+    </div>
 
-        // Simple Countdown Logic
-        const timerContainer = document.getElementById('timer');
-        let h = 4, m = 52, s = 18;
-        setInterval(() => {
-            s--;
-            if(s < 0) { s = 59; m--; }
-            if(m < 0) { m = 59; h--; }
-            timerContainer.innerHTML = `
-                <div>${h.toString().padStart(2, '0')} <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">HRS</span></div>
-                <div class="text-brand">:</div>
-                <div>${m.toString().padStart(2, '0')} <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">MIN</span></div>
-                <div class="text-brand">:</div>
-                <div>${s.toString().padStart(2, '0')} <span class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-2">SEC</span></div>
-            `;
-        }, 1000);
+    <script>
+        lucide.createIcons();
     </script>
 </body>
 </html>
