@@ -1,253 +1,1379 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <title>buzzWalk | Comfort, Quality legacy</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
-        .bg-brand { background-color: #b10000; }
-        .text-brand { color: #b10000; }
-        .border-brand { border-color: #b10000; }
-        .font-display { font-weight: 900; text-transform: uppercase; font-style: italic; letter-spacing: -0.02em; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<title>LEZGO — Crafted for Every Step</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Tenor+Sans&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════
+   ROOT & RESET
+════════════════════════════════════════ */
+:root {
+  --black:   #0c0b0a;
+  --deep:    #111009;
+  --surface: #161411;
+  --panel:   #1c1916;
+  --border:  rgba(255,255,255,0.06);
+  --border2: rgba(255,255,255,0.11);
+  --red:     #b10000;
+  --red2:    #c90000;
+  --gold:    #c8a96e;
+  --gold2:   #e8c87a;
+  --white:   #f7f4ef;
+  --muted:   rgba(247,244,239,0.38);
+  --muted2:  rgba(247,244,239,0.58);
+  --ff-head: 'Playfair Display', Georgia, serif;
+  --ff-sub:  'Tenor Sans', serif;
+  --ff-body: 'Jost', sans-serif;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; font-size:16px; }
+body {
+  font-family: var(--ff-body);
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  cursor: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Noise grain ── */
+body::after {
+  content:'';
+  position:fixed; inset:0; pointer-events:none; z-index:9000;
+  opacity:.28;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+/* ════════════════════════════════════════
+   CURSOR
+════════════════════════════════════════ */
+#dot {
+  width:6px; height:6px;
+  background:var(--red);
+  border-radius:50%;
+  position:fixed; top:0; left:0; z-index:9999;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  transition:width .18s,height .18s,background .18s;
+  mix-blend-mode: normal;
+}
+#ring {
+  width:28px; height:28px;
+  border:1px solid rgba(177,0,0,.5);
+  border-radius:50%;
+  position:fixed; top:0; left:0; z-index:9998;
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  transition:width .25s,height .25s,border-color .25s;
+}
+body.hovering #dot  { width:14px; height:14px; background:var(--red2); }
+body.hovering #ring { width:44px; height:44px; border-color:rgba(177,0,0,.8); }
+@media(max-width:768px){#dot,#ring{display:none} body{cursor:auto}}
+
+/* ════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════ */
+#nav {
+  position:fixed; top:0; left:0; right:0; z-index:8000;
+  padding:2rem 4rem;
+  display:flex; align-items:center; justify-content:space-between;
+  transition:padding .4s ease, background .4s ease, border-color .4s ease;
+  border-bottom:1px solid transparent;
+}
+#nav.stuck {
+  padding:1.1rem 4rem;
+  background:rgba(12,11,10,0.92);
+  backdrop-filter:blur(24px);
+  border-bottom-color: var(--border);
+}
+.n-logo {
+  font-family: var(--ff-sub);
+  font-size:1.1rem;
+  letter-spacing:.38em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:var(--white);
+  display:flex; align-items:center; gap:.4rem;
+}
+.n-logo em { color:var(--red); font-style:normal; }
+.n-links {
+  display:flex; gap:3rem; list-style:none;
+  position:absolute; left:50%; transform:translateX(-50%);
+}
+.n-links a {
+  font-family:var(--ff-body);
+  font-size:.65rem; font-weight:400;
+  letter-spacing:.26em; text-transform:uppercase;
+  color:var(--muted2); text-decoration:none;
+  transition:color .2s;
+  position:relative;
+}
+.n-links a::after {
+  content:'';
+  position:absolute; left:0; bottom:-4px;
+  width:0; height:1px;
+  background:var(--red);
+  transition:width .3s;
+}
+.n-links a:hover { color:var(--white); }
+.n-links a:hover::after { width:100%; }
+.n-cta {
+  font-family:var(--ff-body);
+  font-size:.62rem; font-weight:400;
+  letter-spacing:.22em; text-transform:uppercase;
+  text-decoration:none;
+  color:var(--white);
+  padding:.7rem 1.8rem;
+  border:1px solid var(--border2);
+  transition:background .25s, border-color .25s, color .25s;
+  position:relative; overflow:hidden;
+}
+.n-cta::before {
+  content:''; position:absolute; inset:0;
+  background:var(--red); transform:scaleX(0);
+  transform-origin:left; transition:transform .28s ease;
+}
+.n-cta:hover::before { transform:scaleX(1); }
+.n-cta:hover { border-color:var(--red); }
+.n-cta span { position:relative; }
+.n-ham { display:none; flex-direction:column; gap:6px; background:none; border:none; cursor:pointer; padding:4px; }
+.n-ham span { display:block; width:24px; height:1px; background:var(--white); transition:.3s; }
+.n-ham.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+.n-ham.open span:nth-child(2) { opacity:0; }
+.n-ham.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+/* Mobile Drawer */
+#drawer {
+  display:none; position:fixed; inset:0; z-index:7999;
+  background:var(--deep);
+  flex-direction:column; align-items:center; justify-content:center; gap:2.8rem;
+}
+#drawer.open { display:flex; }
+.d-link {
+  font-family:var(--ff-head);
+  font-size:2.4rem; font-style:italic;
+  color:var(--white); text-decoration:none;
+  transition:color .2s;
+}
+.d-link:hover { color:var(--red); }
+.d-link.gold { color:var(--gold); }
+
+/* ════════════════════════════════════════
+   HERO
+════════════════════════════════════════ */
+#hero {
+  position:relative; min-height:100vh;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  overflow:hidden;
+}
+.hero-media {
+  position:absolute; inset:0;
+}
+.hero-media img {
+  width:100%; height:100%;
+  object-fit:cover; object-position:center 40%;
+  filter:brightness(.42) saturate(.75);
+}
+.hero-media::after {
+  content:'';
+  position:absolute; inset:0;
+  background: linear-gradient(
+    160deg,
+    rgba(12,11,10,0.55) 0%,
+    rgba(12,11,10,0.2) 40%,
+    rgba(12,11,10,0.7) 100%
+  );
+}
+.hero-content {
+  position:relative; z-index:2;
+  padding:0 4rem 6rem;
+  max-width:1400px;
+  display:grid; grid-template-columns:1fr 1fr;
+  align-items:flex-end; gap:4rem;
+}
+.hero-left {}
+.hero-eyebrow {
+  font-family:var(--ff-body);
+  font-size:.6rem; font-weight:300;
+  letter-spacing:.45em; text-transform:uppercase;
+  color:var(--red);
+  display:flex; align-items:center; gap:1rem;
+  margin-bottom:2rem;
+}
+.hero-eyebrow::before { content:''; width:36px; height:1px; background:var(--red); }
+.hero-h1 {
+  font-family:var(--ff-head);
+  font-size:clamp(3.8rem, 7.5vw, 8rem);
+  font-weight:400; line-height:.92;
+  letter-spacing:-.02em;
+  margin-bottom:2.5rem;
+}
+.hero-h1 em { font-style:italic; color:var(--muted); display:block; }
+.hero-slogan {
+  font-family:var(--ff-sub);
+  font-size:.72rem;
+  letter-spacing:.3em; text-transform:uppercase;
+  color:var(--muted2);
+  display:flex; align-items:center; gap:1rem;
+  margin-bottom:3rem;
+}
+.hero-slogan::after { content:''; flex:1; max-width:60px; height:1px; background:var(--border2); }
+.hero-cta-row { display:flex; gap:1.5rem; align-items:center; }
+.btn-primary {
+  font-family:var(--ff-body);
+  font-size:.62rem; font-weight:400;
+  letter-spacing:.24em; text-transform:uppercase;
+  color:var(--white);
+  background:var(--red);
+  padding:1.15rem 2.8rem;
+  text-decoration:none;
+  display:inline-block;
+  transition:background .25s, box-shadow .25s;
+  position:relative; overflow:hidden;
+}
+.btn-primary::after {
+  content:''; position:absolute; inset:0;
+  background:rgba(255,255,255,.08);
+  transform:translateX(-100%);
+  transition:transform .35s ease;
+}
+.btn-primary:hover { background:var(--red2); box-shadow:0 8px 40px rgba(177,0,0,.35); }
+.btn-primary:hover::after { transform:translateX(0); }
+.btn-ghost {
+  font-family:var(--ff-body);
+  font-size:.62rem; font-weight:400;
+  letter-spacing:.24em; text-transform:uppercase;
+  color:var(--muted2);
+  text-decoration:none;
+  display:inline-flex; align-items:center; gap:.7rem;
+  transition:color .2s, gap .2s;
+}
+.btn-ghost::after { content:'→'; font-size:1rem; transition:transform .2s; }
+.btn-ghost:hover { color:var(--white); gap:1.1rem; }
+.btn-ghost:hover::after { transform:translateX(4px); }
+
+.hero-right {
+  text-align:right;
+  padding-bottom:.5rem;
+}
+.hero-stat-col {
+  display:inline-flex; flex-direction:column; gap:2.2rem;
+  text-align:right;
+}
+.h-stat {}
+.h-stat-n {
+  font-family:var(--ff-head);
+  font-size:2.6rem; font-style:italic;
+  color:var(--white); line-height:1;
+}
+.h-stat-l {
+  font-family:var(--ff-body);
+  font-size:.58rem; letter-spacing:.28em; text-transform:uppercase;
+  color:var(--muted); margin-top:.2rem;
+}
+.hero-scroll-hint {
+  position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%);
+  z-index:2;
+  display:flex; flex-direction:column; align-items:center; gap:.6rem;
+}
+.scroll-line {
+  width:1px; height:44px;
+  background:linear-gradient(to bottom, var(--red), transparent);
+  animation:pulse-line 2s ease-in-out infinite;
+}
+@keyframes pulse-line { 0%,100%{opacity:.3;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(.7)} }
+.scroll-txt {
+  font-size:.5rem; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--muted); writing-mode:vertical-rl;
+  transform:rotate(180deg); margin-top:.5rem;
+}
+
+/* ════════════════════════════════════════
+   MARQUEE
+════════════════════════════════════════ */
+.mq {
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  overflow:hidden; padding:.85rem 0;
+  background:var(--surface);
+}
+.mq-track {
+  display:flex; animation:mq 28s linear infinite; white-space:nowrap;
+}
+@keyframes mq { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+.mq-item {
+  font-family:var(--ff-sub);
+  font-size:.72rem; letter-spacing:.32em; text-transform:uppercase;
+  color:var(--muted2);
+  padding:0 3rem;
+  display:flex; align-items:center; gap:3rem;
+}
+.mq-item .dot { width:4px; height:4px; background:var(--red); border-radius:50%; flex-shrink:0; }
+
+/* ════════════════════════════════════════
+   SECTION LABEL
+════════════════════════════════════════ */
+.label {
+  font-family:var(--ff-body);
+  font-size:.58rem; font-weight:300;
+  letter-spacing:.42em; text-transform:uppercase;
+  color:var(--red);
+  display:flex; align-items:center; gap:.9rem;
+  margin-bottom:1.4rem;
+}
+.label::before { content:''; width:24px; height:1px; background:var(--red); }
+
+/* ════════════════════════════════════════
+   CRAFT / STORY
+════════════════════════════════════════ */
+#craft {
+  display:grid; grid-template-columns:1fr 1fr;
+  min-height:92vh;
+}
+.craft-img {
+  position:relative; overflow:hidden;
+}
+.craft-img img {
+  width:100%; height:100%; object-fit:cover;
+  filter:saturate(.65) brightness(.88) sepia(.15);
+  transition:transform .9s ease, filter .6s;
+}
+.craft-img:hover img { transform:scale(1.04); filter:saturate(.85) brightness(.9) sepia(.1); }
+.craft-img-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(to right, rgba(12,11,10,.6) 0%, transparent 55%);
+}
+.craft-year {
+  position:absolute; top:2.5rem; left:2.5rem;
+  font-family:var(--ff-head);
+  font-size:.65rem; font-style:italic;
+  letter-spacing:.22em; color:rgba(255,255,255,.3);
+}
+.craft-watermark {
+  position:absolute; bottom:-1rem; right:-1.5rem;
+  font-family:var(--ff-head);
+  font-size:12rem; font-style:italic; font-weight:700;
+  color:rgba(255,255,255,.025);
+  line-height:1; pointer-events:none; user-select:none;
+}
+.craft-body {
+  padding:7rem 5rem;
+  background:var(--surface);
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative;
+}
+.craft-body::before {
+  content:'';
+  position:absolute; left:0; top:10%; bottom:10%;
+  width:1px; background:linear-gradient(to bottom, transparent, var(--border2), transparent);
+}
+.craft-body h2 {
+  font-family:var(--ff-head);
+  font-size:clamp(2.6rem,4vw,4.4rem);
+  font-weight:400; line-height:1.08;
+  margin-bottom:2rem;
+}
+.craft-body h2 em { font-style:italic; color:rgba(247,244,239,.45); }
+.craft-body p {
+  font-size:.9rem; font-weight:300;
+  color:var(--muted2); line-height:1.95;
+  max-width:420px; margin-bottom:1.1rem;
+}
+.craft-attrs {
+  margin-top:3rem;
+  display:flex; flex-direction:column; gap:.8rem;
+}
+.attr {
+  display:flex; align-items:center; gap:1.5rem;
+  padding:1.2rem 1.6rem;
+  border:1px solid var(--border);
+  position:relative; overflow:hidden;
+  transition:border-color .3s;
+  cursor:default;
+}
+.attr::before {
+  content:''; position:absolute;
+  left:0; top:0; bottom:0; width:2px;
+  background:var(--red);
+  transform:scaleY(0); transform-origin:bottom;
+  transition:transform .35s ease;
+}
+.attr:hover { border-color:rgba(177,0,0,.25); }
+.attr:hover::before { transform:scaleY(1); }
+.attr-ico { font-size:.95rem; flex-shrink:0; opacity:.8; }
+.attr-text {
+  font-family:var(--ff-body);
+  font-size:.78rem; font-weight:300;
+  letter-spacing:.08em; color:var(--muted2);
+}
+.attr-text strong { color:var(--white); font-weight:400; }
+
+/* ════════════════════════════════════════
+   COLLECTION
+════════════════════════════════════════ */
+#collection {
+  padding:9rem 4rem;
+  background:var(--black);
+}
+.col-head {
+  display:flex; justify-content:space-between; align-items:flex-end;
+  margin-bottom:5rem;
+}
+.col-title {
+  font-family:var(--ff-head);
+  font-size:clamp(2.8rem,5vw,5rem);
+  font-weight:400; line-height:.98;
+}
+.col-title em { font-style:italic; color:rgba(247,244,239,.3); display:block; font-size:80%; }
+.col-link {
+  font-family:var(--ff-body);
+  font-size:.6rem; font-weight:300;
+  letter-spacing:.26em; text-transform:uppercase;
+  color:var(--muted); text-decoration:none;
+  display:flex; align-items:center; gap:.6rem;
+  transition:color .2s, gap .2s;
+}
+.col-link::after { content:'↗'; }
+.col-link:hover { color:var(--white); gap:.9rem; }
+.col-grid {
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:1px; background:var(--border);
+}
+.c-card {
+  background:var(--surface);
+  display:block; text-decoration:none; color:inherit;
+  position:relative; overflow:hidden;
+  cursor:pointer;
+  transition:background .3s;
+}
+.c-card:hover { background:var(--panel); }
+.c-img {
+  aspect-ratio:3/4; overflow:hidden;
+  position:relative;
+  background:var(--panel);
+}
+.c-img img {
+  width:100%; height:100%; object-fit:cover;
+  filter:saturate(.6) brightness(.85);
+  transition:transform .75s ease, filter .5s;
+}
+.c-card:hover .c-img img {
+  transform:scale(1.09);
+  filter:saturate(.85) brightness(.9);
+}
+.c-badge {
+  position:absolute; top:1.4rem; left:1.4rem;
+  font-family:var(--ff-body);
+  font-size:.52rem; font-weight:400;
+  letter-spacing:.22em; text-transform:uppercase;
+  padding:.4rem 1rem;
+  background:var(--red); color:var(--white);
+}
+.c-badge.ink { background:rgba(247,244,239,.12); color:var(--muted2); }
+.c-hover-cta {
+  position:absolute; inset:0;
+  background:rgba(12,11,10,.6);
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; transition:opacity .35s;
+}
+.c-card:hover .c-hover-cta { opacity:1; }
+.hover-btn {
+  font-family:var(--ff-body);
+  font-size:.6rem; font-weight:400;
+  letter-spacing:.22em; text-transform:uppercase;
+  background:var(--red); color:var(--white);
+  padding:.9rem 2.2rem;
+  text-decoration:none;
+  transform:translateY(8px);
+  transition:transform .3s;
+}
+.c-card:hover .hover-btn { transform:translateY(0); }
+.c-info {
+  padding:1.6rem 1.8rem 2rem;
+  border-top:1px solid var(--border);
+  display:flex; justify-content:space-between; align-items:flex-end;
+}
+.c-name {
+  font-family:var(--ff-head);
+  font-size:1.25rem; font-style:italic; margin-bottom:.25rem;
+}
+.c-type {
+  font-family:var(--ff-body);
+  font-size:.58rem; font-weight:300;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--muted);
+}
+.c-price {
+  font-family:var(--ff-head);
+  font-size:1.45rem; font-style:italic; color:var(--red);
+}
+
+/* ════════════════════════════════════════
+   EID SECTION
+════════════════════════════════════════ */
+#eid {
+  position:relative; overflow:hidden;
+  background:var(--deep);
+  padding:9rem 4rem;
+}
+.eid-bg-word {
+  position:absolute; top:50%; right:-2rem;
+  transform:translateY(-50%);
+  font-family:var(--ff-head);
+  font-size:22vw; font-style:italic; font-weight:700;
+  color:rgba(200,169,110,.04);
+  pointer-events:none; user-select:none;
+  white-space:nowrap; line-height:1;
+}
+.eid-inner {
+  display:grid; grid-template-columns:1fr 1.1fr;
+  gap:8rem; align-items:center;
+  position:relative; z-index:2;
+}
+.eid-label {
+  font-family:var(--ff-body);
+  font-size:.58rem; font-weight:300;
+  letter-spacing:.42em; text-transform:uppercase;
+  color:var(--gold);
+  display:flex; align-items:center; gap:.9rem;
+  margin-bottom:1.4rem;
+}
+.eid-label::before { content:''; width:24px; height:1px; background:var(--gold); }
+.eid-title {
+  font-family:var(--ff-head);
+  font-size:clamp(3rem,5.5vw,5.5rem);
+  font-weight:400; line-height:.96;
+  color:var(--white); margin-bottom:2rem;
+}
+.eid-title em { font-style:italic; color:var(--gold); display:block; }
+.eid-p {
+  font-size:.9rem; font-weight:300;
+  color:var(--muted2); line-height:1.95;
+  max-width:400px; margin-bottom:3rem;
+}
+.btn-gold {
+  font-family:var(--ff-body);
+  font-size:.62rem; font-weight:400;
+  letter-spacing:.24em; text-transform:uppercase;
+  color:var(--deep); background:var(--gold);
+  padding:1.15rem 2.8rem;
+  text-decoration:none; display:inline-block;
+  transition:background .25s, box-shadow .25s;
+}
+.btn-gold:hover { background:var(--gold2); box-shadow:0 8px 40px rgba(200,169,110,.25); }
+.eid-grid {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:1px; background:rgba(200,169,110,.12);
+}
+.e-card {
+  display:block; text-decoration:none; color:inherit;
+  background:var(--surface); overflow:hidden; position:relative;
+  transition:background .3s;
+}
+.e-card:hover { background:var(--panel); }
+.e-img {
+  aspect-ratio:1/1; overflow:hidden;
+  background:var(--panel);
+}
+.e-img img {
+  width:100%; height:100%; object-fit:cover;
+  filter:saturate(.6) brightness(.8) sepia(.1);
+  transition:transform .7s ease, filter .4s;
+}
+.e-card:hover .e-img img { transform:scale(1.07); filter:saturate(.85) brightness(.88); }
+.e-info {
+  padding:1.2rem 1.5rem 1.6rem;
+  border-top:1px solid rgba(200,169,110,.1);
+  display:flex; justify-content:space-between; align-items:center;
+}
+.e-name {
+  font-family:var(--ff-head);
+  font-size:1.1rem; font-style:italic; color:var(--white);
+}
+.e-price {
+  font-family:var(--ff-head);
+  font-size:1.1rem; font-style:italic; color:var(--gold);
+}
+.e-order-hint {
+  position:absolute; bottom:0; left:0; right:0;
+  background:var(--gold);
+  padding:.7rem;
+  font-family:var(--ff-body);
+  font-size:.55rem; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--deep); text-align:center;
+  transform:translateY(100%); transition:transform .3s ease;
+}
+.e-card:hover .e-order-hint { transform:translateY(0); }
+
+/* ════════════════════════════════════════
+   PROMISE STRIP
+════════════════════════════════════════ */
+#promise {
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  display:grid; grid-template-columns:repeat(4,1fr);
+}
+.pr {
+  padding:3.5rem 2.5rem;
+  border-right:1px solid var(--border);
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  gap:1rem;
+  transition:background .25s;
+}
+.pr:last-child { border-right:none; }
+.pr:hover { background:var(--panel); }
+.pr-icon {
+  width:44px; height:44px;
+  border:1px solid var(--border2);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.1rem;
+  transition:border-color .25s;
+}
+.pr:hover .pr-icon { border-color:rgba(177,0,0,.4); }
+.pr-title {
+  font-family:var(--ff-sub);
+  font-size:.75rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--white);
+}
+.pr-desc {
+  font-size:.78rem; font-weight:300;
+  color:var(--muted); line-height:1.7;
+}
+
+/* ════════════════════════════════════════
+   REVIEWS
+════════════════════════════════════════ */
+#reviews {
+  padding:9rem 4rem;
+  background:var(--black);
+}
+.rev-head { text-align:center; margin-bottom:6rem; }
+.rev-title {
+  font-family:var(--ff-head);
+  font-size:clamp(2.8rem,5vw,4.8rem);
+  font-weight:400;
+}
+.rev-title em { font-style:italic; color:var(--muted); }
+.rev-sub {
+  font-size:.65rem; font-weight:300;
+  letter-spacing:.28em; text-transform:uppercase;
+  color:var(--muted); margin-top:.8rem;
+}
+.rev-grid {
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1px; background:var(--border);
+}
+.rv {
+  background:var(--surface);
+  padding:3rem 2.8rem 2.5rem;
+  position:relative;
+  transition:background .25s;
+}
+.rv:hover { background:var(--panel); }
+.rv-mark {
+  font-family:var(--ff-head);
+  font-size:5.5rem; line-height:1; font-style:italic;
+  color:rgba(177,0,0,.1);
+  position:absolute; top:.8rem; right:2rem;
+  pointer-events:none;
+}
+.rv-stars { color:var(--gold); font-size:.85rem; letter-spacing:.1em; margin-bottom:1.6rem; }
+.rv-user { display:flex; align-items:center; gap:1.2rem; margin-bottom:1.8rem; }
+.rv-av {
+  width:50px; height:50px; border-radius:50%;
+  object-fit:cover;
+  filter:saturate(.7) brightness(.9);
+  border:2px solid var(--border2);
+}
+.rv-name {
+  font-family:var(--ff-sub);
+  font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--white); margin-bottom:.2rem;
+}
+.rv-loc { font-size:.68rem; color:var(--muted); font-style:italic; }
+.rv-text {
+  font-family:var(--ff-head);
+  font-size:1rem; font-style:italic; font-weight:400;
+  color:var(--muted2); line-height:1.85;
+}
+.rv-prod {
+  margin-top:1.6rem;
+  display:flex; align-items:center; gap:.6rem;
+  font-size:.55rem; letter-spacing:.26em; text-transform:uppercase;
+  color:var(--red);
+}
+.rv-prod::before { content:''; width:18px; height:1px; background:var(--red); }
+
+/* ════════════════════════════════════════
+   FINAL CTA
+════════════════════════════════════════ */
+#cta {
+  position:relative;
+  min-height:75vh;
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden; text-align:center;
+}
+.cta-bg {
+  position:absolute; inset:0;
+}
+.cta-bg img {
+  width:100%; height:100%; object-fit:cover; object-position:center 30%;
+  filter:brightness(.28) saturate(.6) sepia(.2);
+}
+.cta-bg::after {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse at center, rgba(177,0,0,.12) 0%, transparent 70%);
+}
+.cta-content {
+  position:relative; z-index:2;
+  padding:4rem;
+}
+.cta-lbl {
+  font-size:.58rem; letter-spacing:.44em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:2rem;
+}
+.cta-h {
+  font-family:var(--ff-head);
+  font-size:clamp(3.5rem,7vw,7.5rem);
+  font-weight:400; line-height:.95;
+  margin-bottom:2rem;
+}
+.cta-h em { font-style:italic; color:rgba(247,244,239,.35); display:block; }
+.cta-slogan {
+  font-family:var(--ff-sub);
+  font-size:.78rem; letter-spacing:.32em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:3.5rem;
+}
+.cta-btns { display:flex; gap:1.5rem; justify-content:center; flex-wrap:wrap; }
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer {
+  background:var(--deep);
+  border-top:1px solid var(--border);
+  padding:6rem 4rem 3rem;
+}
+.foot-top {
+  display:grid; grid-template-columns:1.6fr 1fr 1fr 1.4fr;
+  gap:4rem; margin-bottom:5rem;
+}
+.f-logo {
+  font-family:var(--ff-sub);
+  font-size:1.4rem; letter-spacing:.32em; text-transform:uppercase;
+  color:var(--white); text-decoration:none; display:block;
+  margin-bottom:.8rem;
+}
+.f-logo em { color:var(--red); font-style:normal; }
+.f-slogan {
+  font-family:var(--ff-head);
+  font-style:italic; font-size:.9rem;
+  color:var(--muted); line-height:1.7; margin-bottom:2rem;
+}
+.f-soc { display:flex; gap:.8rem; }
+.f-soc a {
+  width:36px; height:36px;
+  border:1px solid var(--border2);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--muted2); text-decoration:none;
+  font-family:var(--ff-body); font-size:.72rem;
+  transition:border-color .2s, color .2s;
+}
+.f-soc a:hover { border-color:var(--red); color:var(--red); }
+.f-head {
+  font-size:.55rem; letter-spacing:.36em; text-transform:uppercase;
+  color:var(--muted); margin-bottom:1.8rem;
+}
+.f-ul { list-style:none; display:flex; flex-direction:column; gap:.9rem; }
+.f-ul a {
+  font-family:var(--ff-head);
+  font-size:.92rem; font-style:italic;
+  color:var(--muted2); text-decoration:none;
+  transition:color .2s;
+}
+.f-ul a:hover { color:var(--white); }
+.f-news p {
+  font-size:.78rem; font-weight:300;
+  color:var(--muted); line-height:1.75; margin-bottom:1.2rem;
+  font-style:italic; font-family:var(--ff-head);
+}
+.f-email {
+  display:flex;
+  border:1px solid var(--border2);
+  transition:border-color .2s;
+}
+.f-email:focus-within { border-color:rgba(177,0,0,.5); }
+.f-email input {
+  flex:1; background:transparent; border:none; outline:none;
+  padding:.85rem 1rem; color:var(--white);
+  font-family:var(--ff-body); font-size:.78rem;
+}
+.f-email input::placeholder { color:var(--muted); }
+.f-email button {
+  background:var(--red); border:none; cursor:pointer;
+  padding:.85rem 1.2rem;
+  font-family:var(--ff-body); font-size:.58rem;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--white);
+  transition:background .2s;
+}
+.f-email button:hover { background:var(--red2); }
+.foot-bot {
+  border-top:1px solid var(--border);
+  padding-top:2rem;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.f-copy {
+  font-size:.58rem; letter-spacing:.18em; text-transform:uppercase;
+  color:rgba(255,255,255,.18);
+}
+.f-made {
+  font-family:var(--ff-head);
+  font-style:italic; font-size:.78rem; color:rgba(255,255,255,.2);
+}
+.f-made em { color:var(--red); font-style:normal; }
+
+/* ════════════════════════════════════════
+   MOBILE STICKY
+════════════════════════════════════════ */
+.mob-bar {
+  display:none;
+  position:fixed; bottom:0; left:0; right:0; z-index:7998;
+  padding:1rem 1.5rem calc(1rem + env(safe-area-inset-bottom));
+  background:rgba(12,11,10,.96); backdrop-filter:blur(20px);
+  border-top:1px solid var(--border);
+}
+.mob-bar a {
+  display:block; text-align:center;
+  background:var(--red); color:var(--white);
+  font-family:var(--ff-sub);
+  font-size:.78rem; letter-spacing:.24em; text-transform:uppercase;
+  padding:1.1rem; text-decoration:none;
+  transition:background .2s;
+}
+.mob-bar a:hover { background:var(--red2); }
+
+/* ════════════════════════════════════════
+   PAGE LOAD ANIMATION
+════════════════════════════════════════ */
+#loader {
+  position:fixed; inset:0; z-index:99999;
+  background:var(--black);
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:2rem;
+  transition:opacity .7s ease, visibility .7s ease;
+}
+#loader.done { opacity:0; visibility:hidden; }
+.loader-logo {
+  font-family:var(--ff-sub);
+  font-size:1.6rem; letter-spacing:.45em; text-transform:uppercase; color:var(--white);
+}
+.loader-logo em { color:var(--red); font-style:normal; }
+.loader-bar-wrap {
+  width:140px; height:1px;
+  background:rgba(255,255,255,.08);
+  position:relative; overflow:hidden;
+}
+.loader-bar {
+  position:absolute; inset:0;
+  background:var(--red);
+  transform:scaleX(0); transform-origin:left;
+  animation:lbar 1.4s ease forwards;
+}
+@keyframes lbar { to{transform:scaleX(1)} }
+.loader-txt {
+  font-size:.55rem; letter-spacing:.4em; text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════ */
+.sr { opacity:0; transform:translateY(32px); transition:opacity .9s ease, transform .9s ease; }
+.sr.in { opacity:1; transform:translateY(0); }
+.sr-l { opacity:0; transform:translateX(-32px); transition:opacity .9s ease, transform .9s ease; }
+.sr-l.in { opacity:1; transform:translateX(0); }
+.sr-r { opacity:0; transform:translateX(32px); transition:opacity .9s ease, transform .9s ease; }
+.sr-r.in { opacity:1; transform:translateX(0); }
+.d1 { transition-delay:.1s } .d2 { transition-delay:.2s } .d3 { transition-delay:.3s } .d4 { transition-delay:.4s }
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media(max-width:1200px){
+  .col-grid { grid-template-columns:repeat(2,1fr); }
+}
+@media(max-width:960px){
+  #nav { padding:1.4rem 2rem; }
+  #nav.stuck { padding:1rem 2rem; }
+  .n-links { display:none; }
+  .n-cta { display:none; }
+  .n-ham { display:flex; }
+
+  #hero { min-height:100svh; }
+  .hero-content { grid-template-columns:1fr; padding:0 2rem 5rem; gap:3rem; }
+  .hero-right { text-align:left; }
+  .hero-stat-col { flex-direction:row; gap:3rem; }
+
+  #craft { grid-template-columns:1fr; }
+  .craft-img { min-height:55vw; }
+  .craft-body { padding:5rem 2rem; }
+
+  #collection { padding:6rem 2rem; }
+  .col-head { flex-direction:column; align-items:flex-start; gap:1.5rem; }
+
+  #eid { padding:6rem 2rem; }
+  .eid-inner { grid-template-columns:1fr; gap:4rem; }
+
+  #promise { grid-template-columns:1fr 1fr; }
+  .pr { border-right:none; border-bottom:1px solid var(--border); }
+  .pr:last-child,.pr:nth-child(2) { border-bottom:none; }
+
+  #reviews { padding:6rem 2rem; }
+  .rev-grid { grid-template-columns:1fr; }
+
+  #cta { padding:4rem 2rem; }
+  footer { padding:5rem 2rem 2.5rem; }
+  .foot-top { grid-template-columns:1fr 1fr; gap:3rem; }
+  .foot-bot { flex-direction:column; gap:.8rem; text-align:center; }
+
+  .mob-bar { display:block; }
+}
+@media(max-width:560px){
+  .col-grid { grid-template-columns:1fr; }
+  .eid-grid { grid-template-columns:1fr; }
+  .foot-top { grid-template-columns:1fr; }
+  #promise { grid-template-columns:1fr; }
+  .pr { border-bottom:1px solid var(--border); border-right:none; }
+  .pr:last-child { border-bottom:none; }
+  .hero-stat-col { flex-wrap:wrap; gap:2rem 3rem; }
+}
+</style>
 </head>
-<body class="bg-white text-black antialiased">
+<body>
 
-    <nav class="fixed top-0 w-full z-50 glass border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-            <div class="text-xl md:text-2xl font-display tracking-tighter">buzz<span class="text-brand">Walk</span></div>
-            <div class="hidden md:flex space-x-8 font-bold text-xs uppercase tracking-widest">
-                <a href="#hero" class="hover:text-brand transition">Home</a>
-                <a href="#heritage" class="hover:text-brand transition">Heritage</a>
-                <a href="#collection" class="hover:text-brand transition">Collection</a>
-                <a href="#reviews" class="hover:text-brand transition">Reviews</a>
-            </div>
-            <a href="https://wa.me/8801763266628" class="bg-brand text-white px-4 md:px-6 py-2 rounded-full text-[10px] md:text-xs font-bold uppercase hover:opacity-90 transition">WhatsApp Order</a>
-        </div>
-    </nav>
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-logo">LEZ<em>GO</em></div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  <div class="loader-txt">Crafted for Every Step</div>
+</div>
 
-    <section id="hero" class="relative pt-24 pb-12 md:pt-48 md:pb-32 bg-gray-50 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-10 items-center">
-            <div class="z-10 text-center lg:text-left">
-                <div class="inline-block bg-white border border-brand/20 px-4 py-1 rounded-full text-[10px] font-bold tracking-[0.3em] uppercase mb-4 text-brand">Premium Craftsmanship</div>
-                <h1 class="text-5xl md:text-7xl lg:text-8xl font-display leading-[0.9] mb-6">Comfort, <br><span class="text-gray-300">Quality legacy.</span></h1>
-                <p class="text-base md:text-lg text-gray-500 mb-8 max-w-lg mx-auto lg:mx-0 italic">Handcrafted footwear engineered for those who demand purpose and style.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <a href="#collection" class="bg-brand text-white px-8 py-4 rounded-xl font-bold text-lg shadow-xl shadow-red-200 text-center">Explore Collection</a>
-                    <a href="#heritage" class="bg-white border-2 border-black px-8 py-4 rounded-xl font-bold text-lg text-center hover:bg-black hover:text-white transition-all">Our Story</a>
-                </div>
-            </div>
-            <div class="relative mt-12 lg:mt-0">
-                <div class="absolute -top-10 -right-10 w-64 h-64 bg-red-100 rounded-full filter blur-3xl opacity-50"></div>
-                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=1000" alt="buzzWalk Hero" class="relative z-10 w-full max-w-[500px] mx-auto rotate-[-5deg] md:rotate-[-12deg] drop-shadow-2xl">
-            </div>
-        </div>
-    </section>
+<!-- CURSOR -->
+<div id="dot"></div>
+<div id="ring"></div>
 
-    <section id="heritage" class="py-20 md:py-32 bg-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="grid grid-cols-2 gap-4">
-                    <img src="https://images.unsplash.com/photo-1596733430284-f7437764b1a9?q=80&w=600" class="rounded-2xl mt-8" alt="Leather Craft">
-                    <img src="https://images.unsplash.com/photo-1449241595218-848028733d5a?q=80&w=600" class="rounded-2xl" alt="Design Process">
-                </div>
-                <div>
-                    <h4 class="text-brand font-bold uppercase tracking-[0.3em] text-xs mb-4">The Craftsmanship</h4>
-                    <h2 class="text-4xl md:text-5xl font-display mb-6">Born from <span class="text-gray-400 text-3xl">Necessity,</span> <br>Refined by <span class="text-brand">Legacy.</span></h2>
-                    <p class="text-gray-600 mb-8 leading-relaxed">At buzzWalk, we believe a shoe isn't just about walking; it's about the legacy you leave with every stride. Each pair is handcrafted in small batches using premium leather and high-performance composites, ensuring your comfort never has to compromise with style.</p>
-                    <div class="space-y-4">
-                        <div class="flex items-start gap-4">
-                            <div class="bg-brand/10 p-2 rounded-lg text-brand"><i data-lucide="check-circle" class="w-5 h-5"></i></div>
-                            <div><p class="font-bold uppercase text-sm italic">Double-Stitched Durability</p></div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="bg-brand/10 p-2 rounded-lg text-brand"><i data-lucide="check-circle" class="w-5 h-5"></i></div>
-                            <div><p class="font-bold uppercase text-sm italic">Eco-Conscious Packaging</p></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ════ NAV ════ -->
+<nav id="nav">
+  <a href="#hero" class="n-logo">LEZ<em>GO</em></a>
+  <ul class="n-links">
+    <li><a href="#craft">Craft</a></li>
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#eid">Eid Edit</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+  </ul>
+  <a href="https://m.me/lezgobd?text=Hello%2C%20I%27d%20like%20to%20place%20an%20order%20with%20Lezgo!" target="_blank" class="n-cta"><span>Order Now</span></a>
+  <button class="n-ham" id="hamBtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-    <section id="benefits" class="py-16 md:py-24 bg-gray-50 border-y border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="text-center md:text-left">
-                <i data-lucide="shield-check" class="w-10 h-10 text-brand mb-4 mx-auto md:mx-0"></i>
-                <h3 class="font-bold text-lg uppercase italic mb-2">Built to Last</h3>
-                <p class="text-gray-500 text-sm italic">Premium materials designed to endure any urban environment.</p>
-            </div>
-            <div class="text-center md:text-left">
-                <i data-lucide="wind" class="w-10 h-10 text-brand mb-4 mx-auto md:mx-0"></i>
-                <h3 class="font-bold text-lg uppercase italic mb-2">Advanced Airflow</h3>
-                <p class="text-gray-500 text-sm italic">Breathable knit technology keeps your feet cool under pressure.</p>
-            </div>
-            <div class="text-center md:text-left">
-                <i data-lucide="truck" class="w-10 h-10 text-brand mb-4 mx-auto md:mx-0"></i>
-                <h3 class="font-bold text-lg uppercase italic mb-2">Express Delivery</h3>
-                <p class="text-gray-500 text-sm italic">2-3 day doorstep delivery across all major cities in Bangladesh.</p>
-            </div>
-            <div class="text-center md:text-left">
-                <i data-lucide="rotate-ccw" class="w-10 h-10 text-brand mb-4 mx-auto md:mx-0"></i>
-                <h3 class="font-bold text-lg uppercase italic mb-2">Easy Returns</h3>
-                <p class="text-gray-500 text-sm italic">Not the right fit? Exchange with ease within 7 days.</p>
-            </div>
-        </div>
-    </section>
+<!-- MOBILE DRAWER -->
+<div id="drawer">
+  <div class="loader-logo" style="margin-bottom:1rem;">LEZ<em style="color:var(--red);font-style:normal;">GO</em></div>
+  <a href="#craft"       class="d-link" onclick="closeDrawer()">Craft</a>
+  <a href="#collection"  class="d-link" onclick="closeDrawer()">Collection</a>
+  <a href="#eid"         class="d-link gold" onclick="closeDrawer()">Eid Edit</a>
+  <a href="#reviews"     class="d-link" onclick="closeDrawer()">Reviews</a>
+  <a href="https://m.me/lezgobd?text=Hello%2C%20I%27d%20like%20to%20place%20an%20order%20with%20Lezgo!" target="_blank" class="btn-primary" style="margin-top:1rem;" onclick="closeDrawer()">Order Now</a>
+</div>
 
-    <section class="py-16 md:py-24 max-w-7xl mx-auto px-6">
-        <div class="bg-black text-white rounded-[2rem] md:rounded-[4rem] p-8 md:p-20 grid lg:grid-cols-2 gap-12 items-center">
-            <div class="order-2 lg:order-1">
-                <h2 class="text-5xl md:text-6xl font-display mb-6 leading-tight uppercase italic">The Phantom <br><span class="text-brand">Black-Red</span></h2>
-                <p class="text-gray-400 text-lg mb-8 italic">Our best-selling drop. Engineered for 24-hour comfort with a soul of a racer.</p>
-                <div class="flex items-center gap-6 mb-10">
-                    <div>
-                        <p class="text-4xl font-display tracking-tighter italic">৳ 2,499</p>
-                        <p class="text-[10px] uppercase text-gray-500 tracking-widest">Limited Holiday Price</p>
-                    </div>
-                </div>
-                <a href="https://wa.me/8801763266628?text=I%20want%20to%20buy%20The%20Phantom" class="block w-full bg-brand py-5 rounded-2xl font-bold text-center text-xl shadow-xl shadow-red-900/40 hover:scale-105 transition-all">Order On WhatsApp</a>
-            </div>
-            <div class="order-1 lg:order-2">
-                <img src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&q=80&w=800" class="rounded-3xl hover:scale-105 transition duration-700">
-            </div>
-        </div>
-    </section>
-
-    <section id="collection" class="py-16 md:py-24 max-w-7xl mx-auto px-6">
-        <div class="flex justify-between items-end mb-12">
-            <div>
-                <h2 class="text-3xl md:text-4xl font-display italic">The 2026 Drops</h2>
-                <p class="text-gray-400 text-xs uppercase tracking-widest mt-2 font-bold italic">Curated for the urban explorer</p>
-            </div>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-            <div class="group cursor-pointer">
-                <div class="aspect-[4/5] bg-gray-50 rounded-[2.5rem] overflow-hidden mb-6 relative border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute top-6 left-6 bg-white text-[10px] font-bold px-3 py-1 rounded-full uppercase italic">New Drop</div>
-                </div>
-                <div class="flex justify-between items-center px-4">
-                    <h3 class="font-display text-lg italic tracking-tight">buzzWalk Aero</h3>
-                    <p class="font-black text-brand italic">৳1,850</p>
-                </div>
-            </div>
-            <div class="group cursor-pointer">
-                <div class="aspect-[4/5] bg-gray-50 rounded-[2.5rem] overflow-hidden mb-6 relative border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                </div>
-                <div class="flex justify-between items-center px-4">
-                    <h3 class="font-display text-lg italic tracking-tight">buzzWalk Classic</h3>
-                    <p class="font-black text-brand italic">৳2,100</p>
-                </div>
-            </div>
-            <div class="group cursor-pointer">
-                <div class="aspect-[4/5] bg-gray-50 rounded-[2.5rem] overflow-hidden mb-6 relative border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute top-6 left-6 bg-black text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase italic">Limited</div>
-                </div>
-                <div class="flex justify-between items-center px-4">
-                    <h3 class="font-display text-lg italic tracking-tight">buzzWalk Urban</h3>
-                    <p class="font-black text-brand italic">৳2,350</p>
-                </div>
-            </div>
-            <div class="group cursor-pointer">
-                <div class="aspect-[4/5] bg-gray-50 rounded-[2.5rem] overflow-hidden mb-6 relative border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                </div>
-                <div class="flex justify-between items-center px-4">
-                    <h3 class="font-display text-lg italic tracking-tight">buzzWalk Volt</h3>
-                    <p class="font-black text-brand italic">৳1,999</p>
-                </div>
-            </div>
-            <div class="group cursor-pointer">
-                <div class="aspect-[4/5] bg-gray-50 rounded-[2.5rem] overflow-hidden mb-6 relative border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1512374382149-4332c6c02151?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                </div>
-                <div class="flex justify-between items-center px-4">
-                    <h3 class="font-display text-lg italic tracking-tight">buzzWalk Zenith</h3>
-                    <p class="font-black text-brand italic">৳2,800</p>
-                </div>
-            </div>
-            <div class="group cursor-pointer">
-                <div class="aspect-[4/5] bg-gray-50 rounded-[2.5rem] overflow-hidden mb-6 relative border border-gray-100">
-                    <img src="https://images.unsplash.com/photo-1539185441755-769473a23570?q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                </div>
-                <div class="flex justify-between items-center px-4">
-                    <h3 class="font-display text-lg italic tracking-tight">buzzWalk Pulse</h3>
-                    <p class="font-black text-brand italic">৳1,750</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="reviews" class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <h2 class="text-4xl font-display mb-16 italic underline decoration-brand decoration-4 underline-offset-8">Community Reviews</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-3xl border border-gray-100 text-left">
-                    <div class="text-yellow-400 mb-4 flex gap-1"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
-                    <p class="text-gray-600 mb-6 italic">"The build quality is insane for this price. I've been wearing the Classic for 3 months now in Dhaka traffic, and they still look new."</p>
-                    <div class="font-bold text-sm uppercase">— Adnan Ahmed, Dhaka</div>
-                </div>
-                <div class="bg-white p-8 rounded-3xl border border-gray-100 text-left">
-                    <div class="text-yellow-400 mb-4 flex gap-1"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
-                    <p class="text-gray-600 mb-6 italic">"Comfort is top-tier. I usually get heel pain, but the foam tech in buzzWalk is a lifesaver for my daily walk to work."</p>
-                    <div class="font-bold text-sm uppercase">— Sarah Islam, Chattogram</div>
-                </div>
-                <div class="bg-white p-8 rounded-3xl border border-gray-100 text-left">
-                    <div class="text-yellow-400 mb-4 flex gap-1"><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i><i data-lucide="star" class="fill-current w-4 h-4"></i></div>
-                    <p class="text-gray-600 mb-6 italic">"Delivery was super fast. Got them in 48 hours. The packaging was so premium, felt like an unboxing experience."</p>
-                    <div class="font-bold text-sm uppercase">— Fahim S., Sylhet</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-white pt-20 pb-32 border-t border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div class="text-center md:text-left">
-                <div class="text-2xl font-display mb-4">buzz<span class="text-brand">Walk</span></div>
-                <p class="text-gray-400 text-sm italic">Comfort, Quality legacy. <br>Crafted for the purposed stride.</p>
-            </div>
-            <div class="text-center md:text-left">
-                <h4 class="font-bold text-[10px] uppercase tracking-widest text-gray-400 mb-6">Quick Links</h4>
-                <div class="flex flex-col gap-2 text-sm font-bold uppercase italic">
-                    <a href="#hero" class="hover:text-brand">Home</a>
-                    <a href="#collection" class="hover:text-brand">Shop Collection</a>
-                    <a href="#reviews" class="hover:text-brand">Walkers Voice</a>
-                </div>
-            </div>
-            <div class="text-center md:text-left">
-                <h4 class="font-bold text-[10px] uppercase tracking-widest text-gray-400 mb-6">Support</h4>
-                <div class="flex flex-col gap-2 text-sm font-bold uppercase italic text-gray-500">
-                    <a href="https://wa.me/8801763266628">WhatsApp: +880 1763-266628</a>
-                    <p>Dhaka, Bangladesh</p>
-                    <a href="https://www.facebook.com/buzzwalk" class="text-blue-600">Facebook Page</a>
-                </div>
-            </div>
-            <div class="text-center md:text-left">
-                <h4 class="font-bold text-[10px] uppercase tracking-widest text-gray-400 mb-6">Join the Legacy</h4>
-                <div class="flex gap-2">
-                    <input type="email" placeholder="Email Address" class="bg-gray-50 border border-gray-200 px-4 py-3 rounded-xl w-full text-xs">
-                    <button class="bg-black text-white px-6 py-3 rounded-xl font-bold text-xs uppercase italic">Join</button>
-                </div>
-            </div>
-        </div>
-        <div class="mt-20 text-center text-[10px] text-gray-300 uppercase tracking-widest">© 2026 buzzWalk Legacy. All Rights Reserved.</div>
-    </footer>
-
-    <div class="md:hidden fixed bottom-0 w-full glass p-4 z-[100] border-t border-gray-100 flex gap-4">
-        <a href="https://wa.me/8801763266628" class="flex-1 bg-brand text-white py-4 rounded-2xl font-bold text-center shadow-lg active:scale-95 transition-transform">WhatsApp Now</a>
+<!-- ════ HERO ════ -->
+<section id="hero">
+  <div class="hero-media">
+    <img src="./assets/images/lezgo-banner.jpg" alt="Lezgo Premium Leather Footwear">
+  </div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Premium Leather Footwear — Bangladesh</div>
+      <h1 class="hero-h1">
+        Walk With<br>
+        <em>Purpose.</em>
+      </h1>
+      <div class="hero-slogan">Crafted for Every Step</div>
+      <div class="hero-cta-row">
+        <a href="#collection" class="btn-primary">Explore Collection</a>
+        <a href="#craft"      class="btn-ghost">Our Craft</a>
+      </div>
     </div>
+    <div class="hero-right">
+      <div class="hero-stat-col">
+        <div class="h-stat">
+          <div class="h-stat-n">5K+</div>
+          <div class="h-stat-l">Pairs Sold</div>
+        </div>
+        <div class="h-stat">
+          <div class="h-stat-n">4.9★</div>
+          <div class="h-stat-l">Rated</div>
+        </div>
+        <div class="h-stat">
+          <div class="h-stat-n">48H</div>
+          <div class="h-stat-l">Delivery</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <div class="scroll-txt">Scroll</div>
+  </div>
+</section>
 
-    <script>
-        lucide.createIcons();
-    </script>
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-track">
+    <div class="mq-item">Penny Loafer<span class="dot"></span></div>
+    <div class="mq-item">Oxford<span class="dot"></span></div>
+    <div class="mq-item">Chelsea Boot<span class="dot"></span></div>
+    <div class="mq-item">Full-Grain Leather<span class="dot"></span></div>
+    <div class="mq-item">Handcrafted<span class="dot"></span></div>
+    <div class="mq-item">Eid Collection 2026<span class="dot"></span></div>
+    <div class="mq-item">Crafted for Every Step<span class="dot"></span></div>
+    <div class="mq-item">Made in Bangladesh<span class="dot"></span></div>
+    <div class="mq-item">Penny Loafer<span class="dot"></span></div>
+    <div class="mq-item">Oxford<span class="dot"></span></div>
+    <div class="mq-item">Chelsea Boot<span class="dot"></span></div>
+    <div class="mq-item">Full-Grain Leather<span class="dot"></span></div>
+    <div class="mq-item">Handcrafted<span class="dot"></span></div>
+    <div class="mq-item">Eid Collection 2026<span class="dot"></span></div>
+    <div class="mq-item">Crafted for Every Step<span class="dot"></span></div>
+    <div class="mq-item">Made in Bangladesh<span class="dot"></span></div>
+  </div>
+</div>
+
+<!-- ════ CRAFT ════ -->
+<section id="craft">
+  <div class="craft-img sr-l">
+    <img src="https://images.unsplash.com/photo-1511556820780-d912e42b4980?auto=format&fit=crop&q=80&w=900" alt="Leather Craft">
+    <div class="craft-img-overlay"></div>
+    <div class="craft-year">Est. Bangladesh</div>
+    <div class="craft-watermark">L</div>
+  </div>
+  <div class="craft-body sr-r">
+    <div class="label">The Craft</div>
+    <h2>Made by hand.<br>Worn with <em>pride.</em></h2>
+    <p>Every Lezgo shoe begins with a single obsession — to create footwear that means something. We use only full-grain leather, hand-finish every edge, and inspect every stitch before a pair leaves our hands.</p>
+    <p>Because great shoes aren't just worn — they're remembered.</p>
+    <div class="craft-attrs">
+      <div class="attr sr d1">
+        <span class="attr-ico">🪡</span>
+        <span class="attr-text"><strong>Full-grain leather</strong> — hand-selected for texture and longevity</span>
+      </div>
+      <div class="attr sr d2">
+        <span class="attr-ico">🔩</span>
+        <span class="attr-text"><strong>Double-stitched welts</strong> — built for years, not seasons</span>
+      </div>
+      <div class="attr sr d3">
+        <span class="attr-ico">📦</span>
+        <span class="attr-text"><strong>Premium presentation</strong> — every pair gift-ready on arrival</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ COLLECTION ════ -->
+<section id="collection">
+  <div class="col-head sr">
+    <div>
+      <div class="label">2026 Collection</div>
+      <div class="col-title">
+        The Classics,<br>
+        <em>Reimagined.</em>
+      </div>
+    </div>
+    <a href="https://facebook.com/lezgobd" target="_blank" class="col-link">View all on Facebook</a>
+  </div>
+
+  <div class="col-grid">
+    <a href="https://m.me/lezgobd?text=Hello%2C%20I%27d%20like%20to%20order%20the%20Lezgo%20Penny%20Loafer.%20Please%20share%20available%20sizes%20and%20colors!" target="_blank" class="c-card sr">
+      <div class="c-img">
+        <img src="https://images.unsplash.com/photo-1614252369475-531eba835eb1?auto=format&fit=crop&q=80&w=700" alt="Penny Loafer">
+        <span class="c-badge">Best Seller</span>
+        <div class="c-hover-cta"><a class="hover-btn">Order Now</a></div>
+      </div>
+      <div class="c-info">
+        <div><div class="c-name">Penny Loafer</div><div class="c-type">Slip-On Classic</div></div>
+        <div class="c-price">৳2,800</div>
+      </div>
+    </a>
+
+    <a href="https://m.me/lezgobd?text=Hello%2C%20I%27d%20like%20to%20order%20the%20Lezgo%20Oxford.%20Please%20share%20available%20sizes%20and%20colors!" target="_blank" class="c-card sr d1">
+      <div class="c-img">
+        <img src="https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&q=80&w=700" alt="Oxford">
+        <span class="c-badge ink">New Drop</span>
+        <div class="c-hover-cta"><a class="hover-btn">Order Now</a></div>
+      </div>
+      <div class="c-info">
+        <div><div class="c-name">Oxford</div><div class="c-type">Formal Lace-Up</div></div>
+        <div class="c-price">৳3,200</div>
+      </div>
+    </a>
+
+    <a href="https://m.me/lezgobd?text=Hello%2C%20I%27d%20like%20to%20order%20the%20Lezgo%20Chelsea%20Boot.%20Please%20share%20available%20sizes%20and%20colors!" target="_blank" class="c-card sr d2">
+      <div class="c-img">
+        <img src="https://images.unsplash.com/photo-1638953952702-b9da971aa5e3?auto=format&fit=crop&q=80&w=700" alt="Chelsea Boot">
+        <span class="c-badge">Limited</span>
+        <div class="c-hover-cta"><a class="hover-btn">Order Now</a></div>
+      </div>
+      <div class="c-info">
+        <div><div class="c-name">Chelsea Boot</div><div class="c-type">Ankle Pull-On</div></div>
+        <div class="c-price">৳3,800</div>
+      </div>
+    </a>
+
+    <a href="https://m.me/lezgobd?text=Hello%2C%20I%27d%20like%20to%20order%20the%20Lezgo%20Derby.%20Please%20share%20available%20sizes%20and%20colors!" target="_blank" class="c-card sr d3">
+      <div class="c-img">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=700" alt="Derby">
+        <div class="c-hover-cta"><a class="hover-btn">Order Now</a></div>
+      </div>
+      <div class="c-info">
+        <div><div class="c-name">Derby</div><div class="c-type">Open-Lacing Leather</div></div>
+        <div class="c-price">৳2,990</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ════ EID ════ -->
+<section id="eid">
+  <div class="eid-bg-word">Eid</div>
+  <div class="eid-inner">
+    <div class="sr-l">
+      <div class="eid-label">✦ Eid ul-Fitr 2026</div>
+      <div class="eid-title">
+        The Eid<br>
+        <em>Collection</em><br>
+        is Here.
+      </div>
+      <p class="eid-p">Celebrate in comfort and elegance. Our Eid Edit — Slides, Steps, Mules and Kolhapuris — crafted to carry you through prayers, gatherings, and every blessed stride.</p>
+      <a href="https://m.me/lezgobd?text=Assalamu%20Alaikum%21%20I%27d%20love%20to%20explore%20the%20Lezgo%20Eid%20Collection.%20Please%20share%20details!" target="_blank" class="btn-gold">Explore Eid Edit →</a>
+    </div>
+    <div class="eid-grid sr-r">
+      <a href="https://m.me/lezgobd?text=Assalamu%20Alaikum%21%20I%27d%20like%20to%20order%20the%20Lezgo%20Eid%20Leather%20Slide.%20Please%20share%20sizes%20and%20details!" target="_blank" class="e-card">
+        <div class="e-img"><img src="https://images.unsplash.com/photo-1603487742131-4160ec999306?auto=format&fit=crop&q=80&w=500" alt="Leather Slide"></div>
+        <div class="e-info"><div class="e-name">Leather Slide</div><div class="e-price">৳1,450</div></div>
+        <div class="e-order-hint">Order on Messenger</div>
+      </a>
+      <a href="https://m.me/lezgobd?text=Assalamu%20Alaikum%21%20I%27d%20like%20to%20order%20the%20Lezgo%20Eid%20Step.%20Please%20share%20sizes%20and%20details!" target="_blank" class="e-card">
+        <div class="e-img"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&q=80&w=500" alt="Eid Step"></div>
+        <div class="e-info"><div class="e-name">Eid Step</div><div class="e-price">৳1,750</div></div>
+        <div class="e-order-hint">Order on Messenger</div>
+      </a>
+      <a href="https://m.me/lezgobd?text=Assalamu%20Alaikum%21%20I%27d%20like%20to%20order%20the%20Lezgo%20Eid%20Mule.%20Please%20share%20sizes%20and%20details!" target="_blank" class="e-card">
+        <div class="e-img"><img src="https://images.unsplash.com/photo-1515347619252-60a4bf4fff4f?auto=format&fit=crop&q=80&w=500" alt="Eid Mule"></div>
+        <div class="e-info"><div class="e-name">Eid Mule</div><div class="e-price">৳1,600</div></div>
+        <div class="e-order-hint">Order on Messenger</div>
+      </a>
+      <a href="https://m.me/lezgobd?text=Assalamu%20Alaikum%21%20I%27d%20like%20to%20order%20the%20Lezgo%20Kolhapuri.%20Please%20share%20sizes%20and%20details!" target="_blank" class="e-card">
+        <div class="e-img"><img src="https://images.unsplash.com/photo-1508532566027-b2579a8c0fed?auto=format&fit=crop&q=80&w=500" alt="Kolhapuri"></div>
+        <div class="e-info"><div class="e-name">Kolhapuri</div><div class="e-price">৳1,900</div></div>
+        <div class="e-order-hint">Order on Messenger</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ PROMISE ════ -->
+<section id="promise">
+  <div class="pr sr">
+    <div class="pr-icon">🪡</div>
+    <div class="pr-title">Full-Grain Leather</div>
+    <p class="pr-desc">Only the finest hides. Every pair ages with character, not wear.</p>
+  </div>
+  <div class="pr sr d1">
+    <div class="pr-icon">🚚</div>
+    <div class="pr-title">48H Delivery</div>
+    <p class="pr-desc">Fast, tracked delivery across all of Bangladesh.</p>
+  </div>
+  <div class="pr sr d2">
+    <div class="pr-icon">🔄</div>
+    <div class="pr-title">7-Day Exchange</div>
+    <p class="pr-desc">Not the right size? Exchange within 7 days, effortlessly.</p>
+  </div>
+  <div class="pr sr d3">
+    <div class="pr-icon">💬</div>
+    <div class="pr-title">Direct Inbox Order</div>
+    <p class="pr-desc">Message us on Facebook — we reply within the hour.</p>
+  </div>
+</section>
+
+<!-- ════ REVIEWS ════ -->
+<section id="reviews">
+  <div class="rev-head sr">
+    <div class="label" style="justify-content:center;">Voices</div>
+    <div class="rev-title">উন্নীত. প্রিয়. <em>স্মরণীয়.</em></div>
+    <div class="rev-sub">চট্টগ্রামের গ্রাহকদের ভালবাসা</div>
+  </div>
+  <div class="rev-grid">
+    <div class="rv sr">
+      <div class="rv-mark">"</div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-user">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=100&h=100&fit=crop&crop=face" alt="আদনান" class="rv-av">
+        <div><div class="rv-name">আদনান আহমেদ</div><div class="rv-loc">চট্টগ্রাম, বাংলাদেশ</div></div>
+      </div>
+      <p class="rv-text">Penny Loffer ta kov ee stylish and comfortable chilo . Export quality er leather use korche</p>
+      <div class="rv-prod">পেনি লোফার</div>
+    </div>
+    <div class="rv sr d1">
+      <div class="rv-mark">"</div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-user">
+        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=100&h=100&fit=crop&crop=face" alt="সারা" class="rv-av">
+        <div><div class="rv-name">সারা ইসলাম</div><div class="rv-loc">চট্টগ্রাম, বাংলাদেশ</div></div>
+      </div>
+      <p class="rv-text">চেলসি বুট গুলো দেখতে খুবই সুন্দর। এক্কান বিয়েতে পইরা গিয়েছিলাম, সবাই অনেক প্রশংসা গরিছে। মেসেঞ্জারে অর্ডার করা খুব সহজ ছিল এবং ডেলিভারিও খুব দ্রুত পেয়িছি। </p>
+      <div class="rv-prod">চেলসি বুট</div>
+    </div>
+    <div class="rv sr d2">
+      <div class="rv-mark">"</div>
+      <div class="rv-stars">★★★★★</div>
+      <div class="rv-user">
+        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=100&h=100&fit=crop&crop=face" alt="ফাহিম" class="rv-av">
+        <div><div class="rv-name">ফাহিম সরকার</div><div class="rv-loc">চট্টগ্রাম, বাংলাদেশ</div></div>
+      </div>
+      <p class="rv-text">দ্রুত ডেলিভারি, দারুণ প্যাকেজিং এবং অক্সফোর্ড জুতো গুলো বাস্তবে ছবির চেয়েও বেশি আকর্ষণীয়। LezGo সত্যিই সেরা। </p>
+      <div class="rv-prod">অক্সফোর্ড</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FINAL CTA ════ -->
+<section id="cta">
+  <div class="cta-bg">
+    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&q=80&w=1600" alt="">
+  </div>
+  <div class="cta-content">
+    <div class="cta-lbl">One message away</div>
+    <div class="cta-h sr">
+      Your Finest<br>
+      <em>Pair Awaits.</em>
+    </div>
+    <div class="cta-slogan">Crafted for Every Step</div>
+    <div class="cta-btns sr">
+      <a href="https://m.me/lezgobd?text=Hello%2C%20I%27d%20like%20to%20place%20an%20order%20with%20Lezgo!%20Please%20help%20me%20choose." target="_blank" class="btn-primary">Message Us on Facebook</a>
+      <a href="https://facebook.com/lezgobd" target="_blank" class="btn-ghost">View Our Page</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="foot-top">
+    <div>
+      <a href="#hero" class="f-logo">LEZ<em>GO</em></a>
+      <p class="f-slogan">Crafted for Every Step.<br>Leather footwear born in Bangladesh.</p>
+      <div class="f-soc">
+        <a href="https://facebook.com/lezgobd" target="_blank">f</a>
+        <a href="#">ig</a>
+      </div>
+    </div>
+    <div>
+      <div class="f-head">Navigate</div>
+      <ul class="f-ul">
+        <li><a href="#craft">Our Craft</a></li>
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#eid">Eid Edit</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="f-head">Support</div>
+      <ul class="f-ul">
+        <li><a href="https://m.me/lezgobd?text=Hi%2C%20I%20need%20help%20with%20my%20Lezgo%20order." target="_blank">Order Enquiry</a></li>
+        <li><a href="https://m.me/lezgobd?text=Hi%2C%20I%20need%20to%20exchange%20my%20Lezgo%20shoes." target="_blank">Exchange Request</a></li>
+        <li><a href="https://m.me/lezgobd?text=Hi%2C%20what%20sizes%20does%20Lezgo%20carry%3F" target="_blank">Size Guide</a></li>
+        <li><a href="https://facebook.com/lezgobd" target="_blank">Facebook Page</a></li>
+      </ul>
+    </div>
+    <div class="f-news">
+      <div class="f-head">Stay in the Loop</div>
+      <p>New drops. Eid specials. First to know.</p>
+      <div class="f-email">
+        <input type="email" placeholder="Your email address">
+        <button>Join</button>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <div class="f-copy">© 2026 Lezgo Footwear — All Rights Reserved</div>
+    <div class="f-made">Crafted with <em>♥</em> in Bangladesh</div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY -->
+<div class="mob-bar">
+  <a href="https://m.me/lezgobd?text=Hello%2C%20I%27d%20like%20to%20place%20an%20order%20with%20Lezgo!%20Please%20help%20me%20choose." target="_blank">Order on Facebook Messenger →</a>
+</div>
+
+<script>
+/* ── Loader ── */
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('loader').classList.add('done'), 1600);
+});
+
+/* ── Cursor ── */
+const dot = document.getElementById('dot');
+const ring = document.getElementById('ring');
+let mx=0, my=0, rx=0, ry=0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx+'px'; dot.style.top = my+'px';
+});
+(function loop() {
+  rx += (mx - rx) * 0.09; ry += (my - ry) * 0.09;
+  ring.style.left = rx+'px'; ring.style.top = ry+'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a, button').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+});
+
+/* ── Nav ── */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('stuck', window.scrollY > 60);
+});
+
+/* ── Mobile drawer ── */
+let drawerOpen = false;
+const ham = document.getElementById('hamBtn');
+const drawer = document.getElementById('drawer');
+ham.addEventListener('click', () => {
+  drawerOpen = !drawerOpen;
+  drawer.classList.toggle('open', drawerOpen);
+  ham.classList.toggle('open', drawerOpen);
+  document.body.style.overflow = drawerOpen ? 'hidden' : '';
+});
+function closeDrawer() {
+  drawerOpen = false;
+  drawer.classList.remove('open');
+  ham.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ── Scroll Reveal ── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.sr, .sr-l, .sr-r').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>
